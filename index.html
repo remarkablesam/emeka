@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real Estate Agency Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+
+        :root {
+            --navbar-color: #142130;
+            --white: #EFEFEF;
+            --button: #3D768A;
+            --icon-bg: #DEE8FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh; /* Changed to min-height for content flexibility */
+            display: flex; /* Added for sticky footer */
+            flex-direction: column; /* Added for sticky footer */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+            width: 100%;
+            padding: 0 1rem;
+            background-color: white; /* Added background for header */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added shadow for header */
+            position: relative; /* For mobile menu positioning */
+            z-index: 20;
+        }
+
+        .header .logo img {
+            height: 40px; /* Adjust logo size */
+        }
+
+        .header .navBar ul {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header .navBar ul li {
+            list-style-type: none;
+            padding: 0 1.5rem;
+        }
+
+        .header .navBar ul li a {
+            text-decoration: none;
+            color: var(--navbar-color);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .header .login .btn, .header .login .btn2 {
+            width: 150px;
+            height: 45px;
+            border: none;
+            outline: none;
+            border-radius: 50px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            -ms-border-radius: 50px;
+            -o-border-radius: 50px;
+            cursor: pointer;
+            margin: 0 .4rem;
+            font-size: 1rem;
+        }
+
+        .login .btn, .login .btn2 {
+            background-color: var(--icon-bg);
+            color: var(--navbar-color);
+            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .1);
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+        }
+
+        .login .btn:hover, .login .btn2:hover { background: var(--button); color: var(--white); }
+
+        /* Mobile navigation toggle */
+        .menu-toggle {
+            display: none; /* Hidden by default on desktop */
+            font-size: 3rem; /* Larger icon */
+            cursor: pointer;
+            color: var(--navbar-color);
+        }
+
+        /* Mobile menu active states */
+        @media (max-width: 1160px) {
+            .header .navBar, .header .login {
+                display: none; /* Hide desktop nav and login buttons */
+            }
+            .menu-toggle {
+                display: block; /* Show hamburger icon */
+            }
+
+            .navBar.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100px; /* Below header */
+                left: 0;
+                width: 100%;
+                background-color: white;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                z-index: 10;
+                padding: 1rem 0;
+            }
+            .navBar.active ul {
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+            .navBar.active ul li {
+                width: 100%;
+                padding: 0;
+                text-align: center;
+            }
+            .navBar.active ul li a {
+                display: block;
+                padding: 0.8rem 1rem;
+                border-bottom: 1px solid #eee; /* Separator */
+            }
+            .navBar.active ul li:last-child a {
+                border-bottom: none;
+            }
+
+            .login.active {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: auto; /* Will be positioned by JS after navBar */
+                left: 0;
+                background-color: white;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+                z-index: 10;
+                padding: 1rem 0;
+                border-top: 1px solid #eee; /* Separator from nav */
+            }
+            .login.active .btn, .login.active .btn2 {
+                margin: 0.5rem auto; /* Center buttons */
+                width: 80%; /* Make buttons wider */
+            }
+        }
+
+
+        /*MAIN*/
+
+        .main {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 5%; /* Adjusted margin-top after removing select box */
+            padding: 0 1rem; /* Added padding for smaller screens */
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            background: linear-gradient(305deg, rgba(241, 241, 241, 1) 28%, rgba(187, 255, 252, 1) 58%, rgba(148, 233, 255, 1) 100%); /* Added background gradient */
+            flex-grow: 1; /* Allow main content to grow */
+        }
+
+        .main .main-content .text { width: 500px; }
+        .main .main-content .text h1 {
+            font-size: 3.2rem;
+            color: var(--navbar-color);
+            font-weight: 900;
+        }
+
+        .main .main-content .text p {
+            color: var(--navbar-color);
+            font-weight: 400;
+            margin-top: 2rem;
+        }
+
+        /* Removed .main .main-content .select related styles */
+
+        .main .img {
+            width: 420px;
+            height: 320px;
+        }
+
+        .main .img img {
+            border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
+            -webkit-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
+            -moz-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
+            -ms-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
+            -o-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
+            width: 100%;
+        }
+
+        .main2 { margin-top: 15%; padding: 0 1rem;} /* Added padding */
+
+        .main2 h1 {
+            text-align: center;
+            color: var(--navbar-color);
+            font-size: 2.8rem;
+        }
+
+        .main2 .main-card {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            place-items: center;
+            gap: 2rem; /* Added gap */
+        }
+
+        /* Responsive adjustments for .main2 .main-card */
+        @media (max-width: 1160px) { /* For tablets */
+            .main2 .main-card {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            }
+        }
+        @media (max-width: 768px) { /* For larger phones */
+            .main2 .main-card {
+                grid-template-columns: 1fr; /* 1 column */
+            }
+        }
+
+        .main2 .main-card .card {
+            margin-top: 6rem;
+            width: 320px;
+            height: 350px;
+            background-color: #F8F8F8;
+            text-align: center;
+            padding: 1.25rem 1rem;
+            border: 1px solid var(--button);
+            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .1);
+            border-radius: 12px;
+            -webkit-border-radius: 12px;
+            -moz-border-radius: 12px;
+            -ms-border-radius: 12px;
+            -o-border-radius: 12px;
+        }
+
+        .main2 .main-card .card .icon-img {
+            background-color: var(--icon-bg); /* Changed to variable */
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            width: 75px;
+            height: 75px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main2 .main-card .card .icon-img img { padding: 1.25rem; }
+
+        .main2 .main-card .card h3 {
+            margin-top: 2rem;
+            color: var(--navbar-color);
+            font-size: 1.4rem;
+        }
+
+        .main2 .main-card .card p {
+            margin-top: 1.5rem;
+            color: var(--navbar-color);
+            font-weight: 300;
+            font-size: .85rem;
+        }
+
+        /*EXPLORE*/
+
+        .explore {
+            margin-top: 15%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 3rem; /* Added padding */
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+        .explore .img-exp img {
+            border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
+            -webkit-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
+            -moz-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
+            -ms-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
+            -o-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
+        }
+
+        .explore .content-exp { width: 550px; }
+        .explore .content-exp h2 { color: var(--navbar-color); font-size: 1.8rem; }
+
+        .explore .content-exp p {
+            margin-top: 2rem;
+            color: var(--navbar-color);
+            font-weight: 400;
+            font-size: .9rem;
+        }
+
+        .explore .content-exp .btn-exp {
+            width: 150px;
+            height: 45px;
+            border: none;
+            outline: none;
+            border-radius: 50px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            -ms-border-radius: 50px;
+            -o-border-radius: 50px;
+            cursor: pointer;
+            margin-top: 2.5rem;
+            font-size: 1rem;
+            background-color: var(--button);
+            color: var(--white);
+            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+        }
+
+        .explore .content-exp .btn-exp:hover { background-color: var(--icon-bg); color: var(--navbar-color); }
+
+        /*HOUSES*/
+
+        .houses { margin-top: 15%; padding: 0 1rem; } /* Added padding */
+
+        .houses .content-house {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 6%;
+            flex-wrap: wrap; /* Allow wrapping */
+            gap: 1rem; /* Added gap */
+        }
+
+        .houses .content-house .text-house { width: 500px; }
+
+        .houses .content-house .text-house p {
+            margin-top: 2rem;
+            color: var(--navbar-color);
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        /* Removed .select-dropdown styles as it's no longer needed */
+
+        .house-box {
+            margin-top: 10%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            place-items: center;
+            gap: 3rem;
+            padding: 0 1rem; /* Added padding */
+        }
+
+        /* Responsive adjustments for .house-box */
+        @media (max-width: 768px) { /* For larger phones and tablets */
+            .house-box {
+                grid-template-columns: 1fr; /* 1 column */
+            }
+        }
+
+        .box {
+            background-color: var(--white);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 550px;
+            height: 300px;
+            border: 1px solid var(--button);
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            box-shadow: 0px 18px 14px 10px rgba(0, 0, 0, .18);
+            cursor: pointer; /* Make cards clickable */
+            transition: transform 0.2s ease;
+        }
+        .box:hover {
+            transform: translateY(-5px);
+        }
+
+        .box .box-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 0.5rem;
+            width: 250px; /* Fixed width for image container */
+            height: 100%; /* Fill height of box */
+            overflow: hidden; /* Hide overflow for rounded corners */
+            border-radius: 6px 0 0 6px; /* Match box border radius */
+        }
+        .box .box-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensure image covers the area */
+        }
+
+        .box-content {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 1rem; /* Added padding */
+            flex-grow: 1; /* Allow content to take remaining space */
+        }
+
+        .box-content .box-text {
+            margin-bottom: 3rem;
+            margin-left: 0; /* Reset margin */
+            text-align: left;
+            color: var(--navbar-color);
+        }
+
+        /* Updated .box-content .rooms for better alignment */
+        .box-content .rooms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Keep 2 columns as per screenshot */
+            gap: 0.75rem 0.5rem; /* Increased gap for better separation (row-gap column-gap) */
+            justify-items: start; /* Align content to the start (left) of each grid cell */
+            align-items: center; /* Vertically center content in each grid cell */
+            margin-top: 1rem; /* Provide consistent top margin */
+            margin-bottom: 1rem; /* Provide consistent bottom margin */
+            padding-left: 0.5rem; /* Small left padding to prevent content hugging the edge */
+        }
+
+        /* Ensure .room itself is a flex container for icon-text alignment */
+        .rooms .room {
+            display: flex;
+            align-items: center; /* Align icon and text vertically */
+            gap: 0.35rem; /* Space between icon and text */
+        }
+
+        .box-btn .view .btn {
+            width: 120px;
+            height: 30px;
+            border: none;
+            outline: none;
+            border-radius: 50px;
+            -webkit-border-radius: 50px;
+            -moz-border-radius: 50px;
+            -ms-border-radius: 50px;
+            -o-border-radius: 50px;
+            cursor: pointer;
+            margin: 0 .4rem;
+            font-size: .95rem;
+            background-color: var(--button);
+            color: var(--white);
+            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+        }
+
+        .view .btn:hover {
+            background-color: var(--icon-bg);
+            color: var(--navbar-color);
+        }
+
+        .box-btn .share {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .share .share-box {
+            background-color: var(--icon-bg);
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            padding: 0.6rem;
+            box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, .18);
+            cursor: pointer;
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+        }
+
+        .share-box:hover {
+            transform: scale(1.1);
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            -o-transform: scale(1.1);
+        }
+
+        .share-box img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*CLIENTS*/
+
+        .clients {
+            position: relative;
+            margin-top: 15%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 3rem;
+            flex-wrap: wrap; /* Allow wrapping */
+        }
+
+        .clients .left .customer {
+            border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
+            -webkit-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
+            -moz-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
+            -ms-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
+            -o-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
+        }
+
+        .clients .right { width: 750px; }
+
+        .right h2 {
+            font-size: 2.4rem;
+            color: var(--navbar-color);
+            margin-bottom: 10%;
+        }
+
+        .right p {
+            color: var(--navbar-color);
+            font-weight: 400;
+            font-size: 1.15rem;
+            margin-bottom: 5%;
+        }
+
+        .right .name { margin-top: 3rem; }
+        .name h4 { color: var(--navbar-color); font-size: 1.25rem; }
+        .name p { font-size: .9rem; }
+
+        /*OWNER*/
+
+        .owner {
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20%;
+            background-color: var(--white);
+            width: 750px;
+            height: 200px;
+            box-shadow: 2px 12px 12px 18px rgba(0, 0, 0, .18);
+            border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            padding: 1rem;
+            display: flex; /* Added for centering content */
+            flex-direction: column; /* Added for centering content */
+            justify-content: center; /* Added for centering content */
+            align-items: center; /* Added for centering content */
+        }
+
+        .owner .owner-text { text-align: center; }
+
+        .owner-text h2 {
+            color: var(--navbar-color);
+            font-size: 1.8rem;
+        }
+
+        .owner-text p {
+            color: var(--navbar-color);
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .subscribe {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .subscribe form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .subscribe img {
+            position: absolute;
+            left: 10px;
+            top: 15px;
+            cursor: pointer;
+        }
+
+        .subscribe input[type="email"] {
+            width: 340px;
+            height: 50px;
+            border: 1px solid var(--button);
+            outline: none;
+            padding: 0 25px;
+            text-align: center;
+            background: #E0E0C4;
+            border-radius: 25px 0 0 25px;
+            -webkit-border-radius: 25px 0 0 25px;
+            -moz-border-radius: 25px 0 0 25px;
+            -ms-border-radius: 25px 0 0 25px;
+            -o-border-radius: 25px 0 0 25px;
+        }
+
+        ::placeholder {
+            color: #000000;
+            font-size: 1rem;
+            transition: opacity .3s ease;
+            -webkit-transition: opacity .3s ease;
+            -moz-transition: opacity .3s ease;
+            -ms-transition: opacity .3s ease;
+            -o-transition: opacity .3s ease;
+        }
+
+        :focus::placeholder { opacity: .3; }
+
+        .subscribe input[type="submit"] {
+            position: relative;
+            width: 150px;
+            height: 50px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: var(--button);
+            color: var(--white);
+            left: -25px;
+            border-radius: 25px;
+            -webkit-border-radius: 25px;
+            -moz-border-radius: 25px;
+            -ms-border-radius: 25px;
+            -o-border-radius: 25px;
+            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+        }
+
+        .subscribe input[type="submit"]:hover {
+            background: var(--icon-bg);
+            color: var(--navbar-color);
+        }
+
+        /*FOOTER*/
+
+        .footer {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(305deg, rgba(241, 241, 241, 1) 28%, rgba(187, 255, 252, 1) 58%, rgba(148, 233, 255, 1) 100%);
+            margin-top: 15%;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap; /* Allow wrapping */
+            gap: 1rem; /* Added gap */
+        }
+
+        .footer .estate {
+            margin-top: 1rem;
+            width: 300px;
+        }
+
+        .estate h2 {
+            color: var(--navbar-color);
+            font-size: 1.8rem;
+        }
+
+        .estate p {
+            color: var(--navbar-color);
+            font-weight: 400;
+            font-size: 1rem;
+        }
+
+        .estate .social {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.3rem;
+        }
+
+        .estate .social .icon {
+            background-color: var(--icon-bg);
+            width: 60px;
+            height: 60px;
+            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            -ms-border-radius: 50%;
+            -o-border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all .3s ease;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+        }
+
+        .estate .social .icon:hover {
+            transform: scale(1.05);
+            -webkit-transform: scale(1.05);
+            -moz-transform: scale(1.05);
+            -ms-transform: scale(1.05);
+            -o-transform: scale(1.05);
+        }
+
+        .footer h4 {
+            margin-bottom: 1.2rem;
+            color: var(--navbar-color);
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .footer .about p {
+            color: var(--navbar-color);
+            font-weight: 400;
+            padding: 0.25rem 0;
+            cursor: pointer;
+        }
+
+        .footer .store {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .store img { cursor: pointer; }
+
+        /* MODAL STYLES */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        .modal.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            width: 95%;
+            max-width: 900px; /* Increased max-width for better detail view */
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease-in-out;
+        }
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+        .modal-close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #64748b;
+        }
+        .modal-close-btn:hover {
+            color: var(--navbar-color);
+        }
+        .modal-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .modal-details .main-image-container {
+            width: 100%;
+            height: 350px; /* Fixed height for main image */
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .modal-details .main-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .modal-info {
+            padding-top: 1rem;
+        }
+        .modal-info h2 {
+            font-size: 2.2rem;
+            color: var(--navbar-color);
+            margin-bottom: 1rem;
+        }
+        .modal-info .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--button);
+            margin-bottom: 1rem;
+        }
+        .modal-info .property-specs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .modal-info .property-specs div {
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+            color: var(--navbar-color);
+        }
+        .modal-info .property-specs img {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+        .modal-info .description {
+            font-size: 1rem;
+            color: var(--navbar-color);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .modal-sub-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+        .modal-sub-images img {
+            width: 100px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+        .modal-sub-images img:hover, .modal-sub-images img.active {
+            border-color: var(--button);
+        }
+        .modal-contact-btn {
+            width: 100%;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--button);
+            color: var(--white);
+            border: none;
+            outline: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            transition: background-color 0.2s ease;
+        }
+        .modal-contact-btn:hover {
+            background-color: #2a5a6b; /* Slightly darker shade */
+        }
+
+
+        /* Responsive adjustments */
+        @media (min-width: 769px) { /* Desktop styles for modal */
+            .modal-details {
+                flex-direction: row;
+            }
+            .modal-details .main-image-container {
+                width: 50%;
+                height: auto; /* Allow height to adjust */
+            }
+            .modal-info {
+                width: 50%;
+                padding-left: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1160px) {
+            .header .login .btn,
+            .header .login .btn2 {
+                width: 75px;
+                height: 40px;
+                font-size: .6rem;
+            }
+
+            .header .logo img {width: 160px; }
+
+            .main-content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .main-content .text h1 { font-size: 1.4rem; }
+            .main-content .text p { font-size: .9rem; }
+
+            .main .main-content .text {
+                position: relative;
+                margin-left: auto;
+                margin-right: auto;
+                width: 350px;
+            }
+
+            /* Removed main .main-content .select styles for mobile */
+
+            .main .img { display: none; }
+
+            .explore { flex-direction: column; }
+
+            .explore .content-exp {
+                width: 350px;
+                text-align: center;
+                margin-top: 2rem;
+            }
+
+            .house-box .box { width: 450px; height: 240px; }
+            .house-box .box .box-img { width: 200px; height: auto; }
+            .box .box-img img {width: 100%; }
+
+            .box-text h3 {
+                font-size: 1rem;
+                margin-top: 1rem;
+                margin-bottom: -0.75rem;
+            }
+
+            /* Adjusted for smaller screens (existing media query) */
+            .box-content .rooms {
+                margin-top: 0.5rem; /* Adjusted to a small positive margin */
+                gap: 0.5rem; /* Adjusted gap for smaller screens */
+            }
+            .box-content .box-text {
+                margin-bottom: 1rem; /* Reduced for better flow */
+            }
+            .box-text .price {
+                margin-top: 0.5rem; /* Adjusted */
+            }
+
+            .box-content .box-btn { margin-top: 0.6rem; }
+            .box-btn img { width: 15px; height: auto; }
+
+            .clients {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .clients .right {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 450px;
+            }
+
+            .clients .right h2 { font-size: 1.4rem; }
+
+            .right p { font-size: .9rem; }
+
+            .owner { width: 450px; }
+            .owner-text h2 { font-size: 1.2rem; }
+            .owner-text p { font-size: 0.8rem; }
+
+            .subscribe input[type="email"] { width: 240px; }
+            .subscribe img { width: 20px; height: auto; }
+            .subscribe input[type="submit"]{ width: 80px; font-size: .8rem; }
+            ::placeholder { font-size: .75rem; }
+
+            .footer {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 700px;
+                margin-top: 25%;
+                text-align: center;
+            }
+
+            .footer .estate h2 { font-size: 1rem; }
+            .footer h4 { font-size: .9rem; margin-top: 2rem; }
+            .footer .about p { font-size: .7rem; }
+            .footer .store { margin-top: 2rem; }
+            .footer .store img { width: 150px; height: auto; }
+
+            .estate p { font-size: .75rem; }
+            .estate .social .icon { width: 40px; height: 40px; }
+            .icon img { width: 20px; height: auto; }
+        }
+
+        @media (max-width: 490px) {
+            .header .login .btn, .header .login .btn2 { display: none; }
+
+            .explore .img-exp img { width: 320px; }
+
+            .house-box .box { width: 320px; height: 300px; }
+            .house-box .box .box-img { display: none; } /* Hide image on smallest screens for card */
+
+            .clients .right { width: 320px; }
+            .clients .left .customer { width: 320px;}
+
+            .owner { width: 340px; }
+
+            /* For very small screens, force to 1 column and center */
+            .box-content .rooms {
+                grid-template-columns: 1fr; /* Force to 1 column on very small screens */
+                justify-items: center; /* Center items when in a single column */
+                gap: 0.5rem;
+            }
+            .rooms .room {
+                justify-content: center; /* Center the icon and text within the room */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="https://i.postimg.cc/htCbVtzQ/logo.png" alt="logo">
+        </div>
+
+        <div class="menu-toggle" id="mobileMenuToggle">
+            <i class="material-icons">menu</i>
+        </div>
+
+        <nav class="navBar" id="mainNavBar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Browse House</a></li>
+                <li><a href="#">Sell your house</a></li>
+            </ul>
+        </nav>
+
+        <div class="login" id="mainLoginButtons">
+            <button class="btn" id="loginBtn">Login</button>
+            <button class="btn2" id="createAccountBtn">Create Account</button>
+        </div>
+    </header>
+
+    <div class="main">
+        <div class="main-content">
+            <div class="text">
+                <h1>When you're ready for a change, we're ready to help</h1>
+                <p>Our team is here to support you every step of the way. Let's embark on this journey together and create the future you desire!</p>
+            </div>
+            <!-- Removed the select location, select type, and select price range dropdowns -->
+        </div>
+
+        <div class="img">
+            <img src="https://i.postimg.cc/9Qr5dz8v/house-1.png" alt="image">
+        </div>
+    </div>
+
+    <div class="main2">
+        <h1>Why choose us</h1>
+        <div class="main-card">
+            <div class="card">
+                <div class="icon-img">
+                    <img src="https://i.postimg.cc/QC4MxCdh/tax.png" alt="icon">
+                </div>
+                <h3>Tax Advantages</h3>
+                <p>When you choose our company, you can take advantage of various tax benefits, including mortgage interest deductions, property tax deductions and depreciation benefits for rental properties</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-img">
+                    <img src="https://i.postimg.cc/t4yXQF5W/property.png" alt="icon">
+                </div>
+                <h3>Property insurances</h3>
+                <p>We give to our customers insurances that includes protection for your home and personal belongings from damages or theft and protection against damages caused by flooding, not typically covered by homeowners insurance</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-img">
+                    <img src="https://i.postimg.cc/8PN3T42p/com.png" alt="icon">
+                </div>
+                <h3>Lowest Comission</h3>
+                <p>We are proud to offer the lowest commissions to our valued customers! Your satisfaction is our priority!</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-img">
+                    <img src="https://i.postimg.cc/SxjgKvDh/money.png" alt="icon">
+                </div>
+                <h3>Best Prices</h3>
+                <p>We are proud to offer you the best prices in the market! Your dream home is just a click away. Let us help you find it!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="explore">
+        <div class="img-exp">
+            <img src="https://i.postimg.cc/QN7zcCLy/house-2.png" alt="image">
+        </div>
+        <div class="content-exp">
+            <h2>We are all biochemically unique. Buying or selling your home should be, too</h2>
+            <p>Just as our fingerprints are individual, so too are our needs and desires when it comes to finding the perfect home. The traditional, one-size-fits-all approach to real estate simply doesn't resonate with this truth. We take the time to truly understand your specific needs, aspirations, and anxieties, tailoring our services to create a personalized experience that reflects your individuality</p>
+            <button class="btn-exp" id="exploreMoreBtn">Explore More</button>
+        </div>
+    </div>
+
+    <div class="houses">
+        <div class="content-house">
+            <div class="text-house">
+                <h2>Our trending latest property</h2>
+                <p> Our latest listings feature properties in sought-after locations, with unique designs and sustainable features that cater to the evolving preferences of buyers</p>
+            </div>
+            <!-- Removed the select-dropdown HTML element -->
+        </div>
+
+        <div class="house-box" id="trendingPropertiesGrid">
+            </div>
+    </div>
+
+    <div class="clients">
+        <div class="left">
+            <div class="img-cust">
+                <img src="real.jpg" alt="image" class="customer">
+            </div>
+        </div>
+
+        <div class="right">
+            <h2>What our clients are saying</h2>
+            <p>I am pleased and blessed with my experience with Real Estate. They have the most professional and kindest team. Real Estate went above and beyond, and I am so grateful for their help</p>
+
+            <div class="name">
+                <h4>Alonso Bloodworth</h4>
+                <p>9236 Valley Rd.Quakertown, PA 18951</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="owner">
+        <div class="owner-text">
+            <h2>Are you a property owner?</h2>
+            <p>Put your email address and get listed</p>
+        </div>
+
+        <div class="subscribe">
+            <form id="ownerSubscribeForm">
+                <img src="https://i.postimg.cc/hjKYYd32/send.png" alt="icon">
+                <input type="email" spellcheck="false" placeholder="Enter your email" id="ownerEmailInput" required>
+                <input type="submit" value="Submit" id="ownerSubmitBtn">
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="estate">
+            <h2>Real estate</h2>
+            <p>When you're ready for a change, we're ready to help</p>
+
+            <div class="social">
+                <div class="icon">
+                    <a href="https://facebook.com" target="_blank"><img src="https://i.postimg.cc/BQwB9Ktm/facebook.png" alt="Facebook"></a>
+                </div>
+                
+                <div class="icon">
+                    <a href="https://instagram.com" target="_blank"><img src="https://i.postimg.cc/2SbFzSZr/insta.png" alt="Instagram"></a>
+                </div>
+                
+                <div class="icon">
+                    <a href="https://linkedin.com" target="_blank"><img src="https://i.postimg.cc/kg0NDPQ8/linkedin.png" alt="LinkedIn"></a>
+                </div>
+                
+                <div class="icon">
+                    <a href="https://twitter.com" target="_blank"><img src="https://i.postimg.cc/Wz1gxNVR/twitter.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="about">
+            <h4>Company</h4>
+            <p><a href="#">About</a></p>
+            <p><a href="#">Contact</a></p>
+            <p><a href="#">Career</a></p>
+            <p><a href="#">Blog</a></p>
+        </div>
+
+        <div class="about">
+            <h4>Support</h4>
+            <p><a href="#">Help Center</a></p>
+            <p><a href="#">Support</a></p>
+            <p><a href="#">Management</a></p>
+            <p><a href="#">Privacy & Policy</a></p>
+        </div>
+
+        <div class="about">
+            <h4>About</h4>
+            <p><a href="#">Privacy & Policy</a></p>
+            <p><a href="#">Terms & Conditions</a></p>
+            <p><a href="#">For Businesses</a></p>
+            <p><a href="#">Support</a></p>
+        </div>
+
+        <div class="store">
+            <a href="https://www.apple.com/app-store/" target="_blank"><img src="https://i.postimg.cc/C1TVv5j1/app-store.png" alt="App Store"></a>
+            <a href="https://play.google.com/store" target="_blank"><img src="https://i.postimg.cc/763rj4VN/playstore.png" alt="Play Store"></a>
+        </div>
+
+    </footer>
+
+    <div id="propertyDetailModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close-btn">&times;</button>
+            <div class="modal-details">
+                <div class="main-image-container">
+                    <img id="modalMainImage" src="" alt="Main Property Image">
+                </div>
+                <div class="modal-info">
+                    <h2 id="modalPropertyTitle"></h2>
+                    <p class="price" id="modalPropertyPrice"></p>
+                    <div class="property-specs">
+                        <div><img src="https://i.postimg.cc/fLGc1jJX/bed.png" alt="Bed Icon"><span id="modalPropertyBedrooms"></span> Bedrooms</div>
+                        <div><img src="https://i.postimg.cc/Bvt26wFH/bath.png" alt="Bath Icon"><span id="modalPropertyBathrooms"></span> Bathrooms</div>
+                        <div><img src="https://i.postimg.cc/Wp0ghZdW/kitchen.png" alt="Kitchen Icon"><span id="modalPropertyKitchens"></span> Kitchen</div>
+                        <div><img src="https://i.postimg.cc/MGcjxfkY/area.png" alt="Area Icon"><span id="modalPropertyArea"></span> Sq. Fit</div>
+                        <div><img src="https://i.postimg.cc/CL1hWTpG/like.png" alt="Likes Icon"><span id="modalPropertyLikes"></span> Likes</div>
+                        <div><img src="https://i.postimg.cc/vBhyNXP2/share.png" alt="Share Icon"><span id="modalPropertyShares"></span> Shares</div>
+                    </div>
+                    <p class="description" id="modalPropertyDescription"></p>
+                    <div class="modal-sub-images" id="modalSubImagesContainer">
+                        </div>
+                    <button class="modal-contact-btn" data-property-id="">Contact Agent</button> <!-- Added data-property-id attribute -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- DOM Elements ---
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mainNavBar = document.getElementById('mainNavBar');
+            const mainLoginButtons = document.getElementById('mainLoginButtons');
+
+            const loginBtn = document.getElementById('loginBtn');
+            const createAccountBtn = document.getElementById('createAccountBtn');
+            const exploreMoreBtn = document.getElementById('exploreMoreBtn');
+            const ownerSubscribeForm = document.getElementById('ownerSubscribeForm');
+            const ownerEmailInput = document.getElementById('ownerEmailInput');
+            const ownerSubmitBtn = document.getElementById('ownerSubmitBtn');
+
+            // Removed propertyFilterType as the dropdown is removed
+            const trendingPropertiesGrid = document.getElementById('trendingPropertiesGrid');
+
+            const propertyDetailModal = document.getElementById('propertyDetailModal');
+            const modalCloseBtn = propertyDetailModal.querySelector('.modal-close-btn');
+            const modalMainImage = document.getElementById('modalMainImage');
+            const modalPropertyTitle = document.getElementById('modalPropertyTitle');
+            const modalPropertyPrice = document.getElementById('modalPropertyPrice');
+            const modalPropertyBedrooms = document.getElementById('modalPropertyBedrooms');
+            const modalPropertyBathrooms = document.getElementById('modalPropertyBathrooms');
+            const modalPropertyKitchens = document.getElementById('modalPropertyKitchens');
+            const modalPropertyArea = document.getElementById('modalPropertyArea');
+            const modalPropertyLikes = document.getElementById('modalPropertyLikes');
+            const modalPropertyShares = document.getElementById('modalPropertyShares');
+            const modalPropertyDescription = document.getElementById('modalPropertyDescription');
+            const modalSubImagesContainer = document.getElementById('modalSubImagesContainer');
+            const modalContactBtn = propertyDetailModal.querySelector('.modal-contact-btn');
+
+
+            // --- Mock Property Data (Stored in localStorage for persistence) ---
+            const PROPERTY_DATA_KEY = 'realEstateProperties';
+
+            function getProperties() {
+                let properties = JSON.parse(localStorage.getItem(PROPERTY_DATA_KEY) || '[]');
+                // Ensure the mock data is always consistent. If it's not exactly 14 properties, re-initialize.
+                if (properties.length !== 14) {
+                    console.log('Re-initializing property data in localStorage.');
+                    properties = [
+                        {
+                            id: 'prop1',
+                            title: 'Contemporary Architectural Style House',
+                            type: 'Duplex House',
+                            location: 'London, UK',
+                            price: 321000,
+                            bedrooms: 3,
+                            bathrooms: 3,
+                            kitchens: 1,
+                            area: 1000,
+                            description: 'A stunning contemporary duplex house with an open-plan living area, high ceilings, and large windows. Features include a modern kitchen, spacious bedrooms, and a private garden. Perfect for a family looking for a stylish and comfortable home in London.',
+                            mainImage: 'https://i.postimg.cc/4NnLDwL7/card-1.png',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1580582932707-52c142c1ff23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fGZhbWlseSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ1Nw&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 120,
+                            shares: 45,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop2',
+                            title: 'Minimalist Contemporary Architectural Style House',
+                            type: 'Duplex House',
+                            location: 'Manchester, UK',
+                            price: 360000,
+                            bedrooms: 4,
+                            bathrooms: 3,
+                            kitchens: 1,
+                            area: 1150,
+                            description: 'A beautifully designed minimalist duplex house offering spacious living and modern comforts. Features include a sleek kitchen, ample natural light, and a serene backyard. Ideal for those seeking a blend of style and functionality.',
+                            mainImage: 'https://i.postimg.cc/L50pH5Fz/card-2.png',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 98,
+                            shares: 30,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop3',
+                            title: 'Mediterranean Colonial Style House',
+                            type: 'Triplex House',
+                            location: 'Oxford, UK',
+                            price: 310000,
+                            bedrooms: 4,
+                            bathrooms: 4,
+                            kitchens: 1,
+                            area: 1300,
+                            description: 'Charming Mediterranean Colonial style triplex house with classic architecture and modern interiors. Features include multiple living areas, a gourmet kitchen, and a beautiful patio. Located in a quiet, family-friendly neighborhood.',
+                            mainImage: 'https://i.postimg.cc/52BRgyKn/card-3.png',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 150,
+                            shares: 60,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop4',
+                            title: 'Mid-century Modern Residential Style House',
+                            type: 'Duplex House',
+                            location: 'London, UK',
+                            price: 495000,
+                            bedrooms: 5,
+                            bathrooms: 4,
+                            kitchens: 1,
+                            area: 1600,
+                            description: 'An exquisite mid-century modern duplex house, blending classic design with contemporary living. Features expansive windows, open spaces, and a connection to nature. Ideal for those who appreciate unique architectural styles.',
+                            mainImage: 'https://i.postimg.cc/g2gBQQdZ/card-4.png',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 200,
+                            shares: 75,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop5',
+                            title: 'Spacious Apartment for Rent',
+                            type: 'Apartment',
+                            location: 'Lagos, Nigeria',
+                            price: 2500000, // Naira
+                            bedrooms: 3,
+                            bathrooms: 2,
+                            kitchens: 1,
+                            area: 1500,
+                            description: 'A spacious 3-bedroom apartment available for rent in a prime area of Lagos. Features include ample living space, modern kitchen, and proximity to essential services. Ideal for families or professionals.',
+                            mainImage: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 80,
+                            shares: 25,
+                            status: 'Rent'
+                        },
+                        {
+                            id: 'prop6',
+                            title: 'Luxury Villa for Rent',
+                            type: 'House',
+                            location: 'Accra, Ghana',
+                            price: 50000, // USD equivalent for simplicity, or adjust to GHS
+                            bedrooms: 4,
+                            bathrooms: 4,
+                            kitchens: 2,
+                            area: 4000,
+                            description: 'Exquisite luxury villa available for rent in a prestigious Accra neighborhood. Boasts high-end finishes, a private pool, and lush gardens. Perfect for diplomatic staff or high-net-worth individuals.',
+                            mainImage: 'https://images.unsplash.com/photo-1580582932707-52c142c1ff23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fGZhbWlseSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ1Nw&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 110,
+                            shares: 40,
+                            status: 'Rent'
+                        },
+                        // --- New Listings Below ---
+                        {
+                            id: 'prop7',
+                            title: 'Modern Duplex in Ikoyi',
+                            type: 'Duplex House',
+                            location: 'Ikoyi, Lagos',
+                            price: 280000000, // Naira
+                            bedrooms: 6,
+                            bathrooms: 5,
+                            kitchens: 2,
+                            area: 4500,
+                            description: 'An ultra-modern 6-bedroom duplex in the heart of Ikoyi, Lagos. Boasts state-of-the-art smart home features, a private cinema, and a rooftop terrace with city views. Exclusive living at its finest.',
+                            mainImage: 'https://images.unsplash.com/photo-1598228723793-d1445722129a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIwfHxob21lJTIwZXh0ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1564013799907-f0101dce12bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE3fHxob21lJTIwZXh0ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1568605117036-ba68f993cd95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE4fHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1513584684374-8bbb752f230d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIyfHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 300,
+                            shares: 120,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop8',
+                            title: 'Charming Studio Apartment',
+                            type: 'Apartment',
+                            location: 'Central London',
+                            price: 1800, // GBP per month
+                            bedrooms: 0,
+                            bathrooms: 1,
+                            kitchens: 1,
+                            area: 400,
+                            description: 'A cozy and efficient studio apartment in the heart of Central London. Perfect for students or single professionals. Excellent transport links and close to major attractions.',
+                            mainImage: 'https://images.unsplash.com/photo-1540518614376-b853a5742874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDI1fHxhcGFydGbtlMENTlMjBpbnRlcmlvcnxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1522708323590-d24dbb6b0b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDI4fHxhcGFydGbtlMENTlMjBpbnRlcmlvcnxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1556912172-45b7cdc50672?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDMwfHxhcGFydGbtlMENTlMjBraXRjaGVufGVufDB8fHx8MTcwNTY0NzY2NHww&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 70,
+                            shares: 15,
+                            status: 'Rent'
+                        },
+                        {
+                            id: 'prop9',
+                            title: 'Large Office Building',
+                            type: 'Commercial',
+                            location: 'Manchester City Centre',
+                            price: 1200000000, // GBP
+                            bedrooms: 0,
+                            bathrooms: 20, // Many bathrooms for commercial
+                            kitchens: 5, // Multiple kitchenettes
+                            area: 50000,
+                            description: 'A prime commercial office building spanning multiple floors in Manchester City Centre. Ideal for large corporations or as an investment property. High rental yield potential.',
+                            mainImage: 'https://images.unsplash.com/photo-1523217582562-09d2bd2f9430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDM1fHxjb21tZXJjaWFsJTIwYnVpbGRpbmd8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1504384764586-bb4be8f53b5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDQwfHxjb21tZXJjaWFsJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1504384764586-bb4be8f53b5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDQwfHxjb21tZXJjaWFsJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 50,
+                            shares: 10,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop10',
+                            title: 'Cozy Terraced House',
+                            type: 'House',
+                            location: 'Headington, Oxford',
+                            price: 280000,
+                            bedrooms: 3,
+                            bathrooms: 2,
+                            kitchens: 1,
+                            area: 900,
+                            description: 'A charming terraced house in the popular Headington area of Oxford. Features a compact garden, two reception rooms, and easy access to local amenities and hospitals. Ideal for small families or as a rental investment.',
+                            mainImage: 'https://images.unsplash.com/photo-1582268611958-abfd65e27fe9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDQ1fHxob3VzZSUyMGV4dGVyaW9yfGVufDB8fHx8MTcwNTY0NzY2NHww&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1568605117036-ba68f993cd95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE4fHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1513584684374-8bbb752f230d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIyfHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 180,
+                            shares: 55,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop11',
+                            title: 'Beachfront Plot',
+                            type: 'Land',
+                            location: 'Tema, Ghana',
+                            price: 80000, // USD equivalent
+                            bedrooms: 0,
+                            bathrooms: 0,
+                            kitchens: 0,
+                            area: 8000,
+                            description: 'A rare opportunity to acquire a beautiful beachfront plot in Tema, Ghana. Perfect for building a luxury holiday home or a boutique resort. Enjoy stunning ocean views and direct beach access.',
+                            mainImage: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDUwfHxiZWFjaGZyb250JTIwbGFuZHxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDUwfHxiZWFjaGZyb250JTIwbGFuZHxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDUwfHxiZWFjaGZyb250JTIwbGFuZHxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 60,
+                            shares: 10,
+                            status: 'Buy'
+                        },
+                        {
+                            id: 'prop12',
+                            title: 'Family Home for Rent',
+                            type: 'House',
+                            location: 'Victoria Island, Lagos',
+                            price: 8000000, // Naira per year
+                            bedrooms: 4,
+                            bathrooms: 3,
+                            kitchens: 1,
+                            area: 2800,
+                            description: 'A comfortable and spacious 4-bedroom family home available for rent in a secure compound on Victoria Island. Features include a well-maintained garden, ample parking, and proximity to international schools and business districts.',
+                            mainImage: 'https://images.unsplash.com/photo-1564013799907-f0101dce12bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE3fHxob21lJTIwZXh0ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1568605117036-ba68f993cd95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE4fHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1513584684374-8bbb752f230d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIyfHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 90,
+                            shares: 35,
+                            status: 'Rent'
+                        },
+                        // New "Sell" properties
+                        {
+                            id: 'prop13',
+                            title: 'Modern Family Home for Sale',
+                            type: 'House',
+                            location: 'Abuja, Nigeria',
+                            price: 150000000, // Naira
+                            bedrooms: 5,
+                            bathrooms: 4,
+                            kitchens: 2,
+                            area: 3500,
+                            description: 'A spacious and modern family home located in a serene part of Abuja. Features include a large living area, en-suite bedrooms, a fitted kitchen, and ample parking. Ideal for a growing family.',
+                            mainImage: 'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 250,
+                            shares: 80,
+                            status: 'Sell'
+                        },
+                        {
+                            id: 'prop14',
+                            title: 'Luxury Penthouse for Sale',
+                            type: 'Apartment',
+                            location: 'Lekki, Lagos',
+                            price: 450000000, // Naira
+                            bedrooms: 4,
+                            bathrooms: 5,
+                            kitchens: 1,
+                            area: 2200,
+                            description: 'An exquisite luxury penthouse offering panoramic views of Lekki. Features include high-end finishes, smart home automation, a private elevator, and access to exclusive amenities. Perfect for discerning buyers.',
+                            mainImage: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDYwfHxwZW50aG91c2V8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
+                            subImages: [
+                                'https://images.unsplash.com/photo-1554995207-c18c696d3cd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDY1fHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
+                                'https://images.unsplash.com/photo-1505691935518-a664e1e0a29f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDY5fHxsYXZpc2glMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTcwNTY0NzY2NHww&ixlib=rb-4.0.3&q=80&w=1080'
+                            ],
+                            likes: 350,
+                            shares: 150,
+                            status: 'Sell'
+                        }
+                    ];
+                    localStorage.setItem(PROPERTY_DATA_KEY, JSON.stringify(properties));
+                } else {
+                    console.log('Loading property data from localStorage.');
+                }
+                return properties;
+            }
+
+            // --- Render Trending Properties ---
+            // Removed filterStatus parameter as we want to show all properties
+            function renderTrendingProperties() {
+                trendingPropertiesGrid.innerHTML = ''; // Clear existing properties
+                const allProperties = getProperties();
+                // No filtering needed, display all properties
+                const propertiesToDisplay = allProperties;
+
+                console.log(`Attempting to render ${propertiesToDisplay.length} properties.`); // Added log
+                if (propertiesToDisplay.length === 0) {
+                    trendingPropertiesGrid.innerHTML = '<p style="text-align: center; color: var(--navbar-color); margin-top: 2rem;">No properties found.</p>';
+                    console.log('No properties to display.'); // Added log
+                    return;
+                }
+
+                propertiesToDisplay.forEach(property => {
+                    console.log(`Rendering property: ${property.title}`); // Added log for each property
+                    const box = document.createElement('div');
+                    box.className = 'box';
+                    box.dataset.id = property.id; // Store ID for modal lookup
+
+                    box.innerHTML = `
+                        <div class="box-img">
+                            <img src="${property.mainImage}" alt="${property.title}">
+                        </div>
+                        <div class="box-content">
+                            <div class="box-text">
+                                <h3>${property.title}</h3>
+                                <h3 class="price">${property.location.includes('Nigeria') ? '₦' : property.location.includes('London') || property.location.includes('Manchester') || property.location.includes('Oxford') ? '£' : '$'}${property.price.toLocaleString()}</h3>
+                            </div>
+                            <div class="rooms">
+                                <div class="room">
+                                    <img src="https://i.postimg.cc/fLGc1jJX/bed.png" alt="icon">
+                                    <p>${property.bedrooms} Bedrooms</p>
+                                </div>
+                                <div class="room">
+                                    <img src="https://i.postimg.cc/Bvt26wFH/bath.png" alt="icon">
+                                    <p>${property.bathrooms} Bathrooms</p>
+                                </div>
+                                <div class="room">
+                                    <img src="https://i.postimg.cc/Wp0ghZdW/kitchen.png" alt="icon">
+                                    <p>${property.kitchens} Kitchen</p>
+                                </div>
+                                <div class="room">
+                                    <img src="https://i.postimg.cc/MGcjxfkY/area.png" alt="icon">
+                                    <p>${property.area} Sq. Fit</p>
+                                </div>
+                            </div>
+                            <div class="box-btn">
+                                <div class="view">
+                                    <button class="btn view-details-btn" data-id="${property.id}">View Details</button>
+                                </div>
+                                <div class="share">
+                                    <div class="share-box">
+                                        <img src="https://i.postimg.cc/CL1hWTpG/like.png" alt="icon">
+                                    </div>
+                                    <div class="share-box">
+                                        <img src="https://i.postimg.cc/vBhyNXP2/share.png" alt="icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    trendingPropertiesGrid.appendChild(box);
+                });
+            }
+
+            // --- Modal Logic ---
+            function openPropertyDetailModal(propertyId) {
+                const properties = getProperties();
+                const property = properties.find(p => p.id === propertyId);
+
+                if (property) {
+                    modalPropertyTitle.textContent = property.title;
+                    modalMainImage.src = property.mainImage;
+                    modalPropertyPrice.textContent = `${property.location.includes('Nigeria') ? '₦' : property.location.includes('London') || property.location.includes('Manchester') || property.location.includes('Oxford') ? '£' : '$'}${property.price.toLocaleString()}`;
+                    modalPropertyBedrooms.textContent = property.bedrooms;
+                    modalPropertyBathrooms.textContent = property.bathrooms;
+                    modalPropertyKitchens.textContent = property.kitchens;
+                    modalPropertyArea.textContent = property.area;
+                    modalPropertyLikes.textContent = property.likes;
+                    modalPropertyShares.textContent = property.shares;
+                    modalPropertyDescription.textContent = property.description;
+
+                    // Set the data-property-id on the contact button
+                    modalContactBtn.dataset.propertyId = property.id;
+
+                    // Render sub-images
+                    modalSubImagesContainer.innerHTML = '';
+                    property.subImages.forEach(subImgUrl => {
+                        const img = document.createElement('img');
+                        img.src = subImgUrl;
+                        img.alt = 'Property sub-image';
+                        img.addEventListener('click', () => {
+                            modalMainImage.src = subImgUrl; // Change main image on sub-image click
+                            // Remove active class from all, add to clicked
+                            modalSubImagesContainer.querySelectorAll('img').forEach(i => i.classList.remove('active'));
+                            img.classList.add('active');
+                        });
+                        modalSubImagesContainer.appendChild(img);
+                    });
+                    // Set the first sub-image as active by default
+                    if (modalSubImagesContainer.firstElementChild) {
+                        modalSubImagesContainer.firstElementChild.classList.add('active');
+                    }
+
+                    propertyDetailModal.classList.add('show');
+                }
+            }
+
+            function closePropertyDetailModal() {
+                propertyDetailModal.classList.remove('show');
+            }
+
+            // --- Event Listeners ---
+
+            // Mobile menu toggle
+            mobileMenuToggle.addEventListener('click', () => {
+                mainNavBar.classList.toggle('active');
+                mainLoginButtons.classList.toggle('active');
+                // Adjust position of login buttons if navBar is active
+                if (mainNavBar.classList.contains('active')) {
+                    mainLoginButtons.style.top = `${mainNavBar.offsetHeight + 100}px`; // 100px is header height
+                } else {
+                    mainLoginButtons.style.top = ''; // Reset
+                }
+            });
+
+            // Close menu when a nav link is clicked (for mobile)
+            mainNavBar.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth < 1160) { // Based on your media query breakpoint
+                        mainNavBar.classList.remove('active');
+                        mainLoginButtons.classList.remove('active');
+                        mainLoginButtons.style.top = ''; // Reset
+                    }
+                });
+            });
+
+            // Adjust login button position on window resize if menu is open
+            window.addEventListener('resize', () => {
+                if (mainNavBar.classList.contains('active')) {
+                    mainLoginButtons.style.top = `${mainNavBar.offsetHeight + 100}px`;
+                }
+                // If resized to desktop, ensure menu is hidden
+                if (window.innerWidth >= 1160) {
+                    mainNavBar.classList.remove('active');
+                    mainLoginButtons.classList.remove('active');
+                    mainLoginButtons.style.top = '';
+                }
+            });
+
+            // Header Buttons
+            loginBtn.addEventListener('click', () => alert('Login button clicked! (Redirect to login page)'));
+            createAccountBtn.addEventListener('click', () => alert('Create Account button clicked! (Redirect to registration page)'));
+
+            // Explore More Button
+            exploreMoreBtn.addEventListener('click', () => alert('Explore More button clicked! (Redirect to About Us or Services page)'));
+
+            // Delegated event listener for "View Details" buttons (since they are dynamic)
+            trendingPropertiesGrid.addEventListener('click', (e) => {
+                if (e.target.classList.contains('view-details-btn')) {
+                    const propertyId = e.target.dataset.id;
+                    openPropertyDetailModal(propertyId);
+                }
+            });
+
+            // Social Media Icons (Footer) - already linked in HTML, but adding alerts for demonstration
+            document.querySelectorAll('.footer .social .icon a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // e.preventDefault(); // Prevent default if you want to handle navigation purely with JS
+                    // alert(`Navigating to ${e.currentTarget.href}`);
+                    console.log(`Navigating to ${e.currentTarget.href}`);
+                });
+            });
+
+            // Footer Nav Links - already linked in HTML, but adding alerts for demonstration
+            document.querySelectorAll('.footer .about p a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // e.preventDefault();
+                    // alert(`Navigating to ${e.currentTarget.textContent} page`);
+                    console.log(`Navigating to ${e.currentTarget.textContent} page`);
+                });
+            });
+
+            // App Store / Play Store Links - already linked in HTML, but adding alerts for demonstration
+            document.querySelectorAll('.footer .store a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // e.preventDefault();
+                    // alert(`Opening ${e.currentTarget.alt} link`);
+                    console.log(`Opening ${e.currentTarget.alt} link`);
+                });
+            });
+
+            // Owner Subscribe Form
+            ownerSubscribeForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent default form submission
+                const email = ownerEmailInput.value;
+                if (email) {
+                    alert(`Thank you for subscribing, ${email}! You will be listed as a property owner.`);
+                    ownerEmailInput.value = ''; // Clear input
+                } else {
+                    alert('Please enter a valid email address.');
+                }
+            });
+
+            // Modal Close Button
+            modalCloseBtn.addEventListener('click', closePropertyDetailModal);
+            propertyDetailModal.addEventListener('click', (e) => {
+                if (e.target === propertyDetailModal) { // Close only if clicking on the overlay, not content
+                    closePropertyDetailModal();
+                }
+            });
+
+            // Contact Agent Button in Modal - Updated to WhatsApp link with property details
+            modalContactBtn.addEventListener('click', () => {
+                const propertyId = modalContactBtn.dataset.propertyId;
+                const properties = getProperties();
+                const property = properties.find(p => p.id === propertyId);
+
+                if (property) {
+                    const phoneNumber = '22950019755'; // Agent's phone number
+                    const formattedPrice = `${property.location.includes('Nigeria') ? '₦' : property.location.includes('London') || property.location.includes('Manchester') || property.location.includes('Oxford') ? '£' : '$'}${property.price.toLocaleString()}`;
+                    
+                    const message = `Hello, I am interested in the property "${property.title}" located at "${property.location}" for ${formattedPrice}. Could you please provide more details? Thank you!`;
+                    const encodedMessage = encodeURIComponent(message);
+                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                    window.open(whatsappUrl, '_blank');
+                } else {
+                    alert('Could not retrieve property details for WhatsApp message.');
+                }
+            });
+
+            // Initial render of all properties (no filter argument needed now)
+            renderTrendingProperties();
+        });
+    </script>
+</body>
+</html>
