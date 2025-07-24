@@ -3,1842 +3,1709 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Real Estate Agency Landing Page</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Emmy Estate - Your Dream Home Awaits</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-
-        :root {
-            --navbar-color: #142130;
-            --white: #EFEFEF;
-            --button: #3D768A;
-            --icon-bg: #DEE8FA;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Lato', sans-serif;
-        }
-
-        body {
-            width: 100%;
-            min-height: 100vh; /* Changed to min-height for content flexibility */
-            display: flex; /* Added for sticky footer */
-            flex-direction: column; /* Added for sticky footer */
-            overflow-x: hidden; /* Prevent horizontal scroll */
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100px;
-            width: 100%;
-            padding: 0 1rem;
-            background-color: white; /* Added background for header */
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Added shadow for header */
-            position: relative; /* For mobile menu positioning */
-            z-index: 20;
-        }
-
-        .header .logo img {
-            height: 40px; /* Adjust logo size */
-        }
-
-        .header .navBar ul {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .header .navBar ul li {
-            list-style-type: none;
-            padding: 0 1.5rem;
-        }
-
-        .header .navBar ul li a {
-            text-decoration: none;
-            color: var(--navbar-color);
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        .header .login .btn, .header .login .btn2 {
-            width: 150px;
-            height: 45px;
-            border: none;
-            outline: none;
-            border-radius: 50px;
-            -webkit-border-radius: 50px;
-            -moz-border-radius: 50px;
-            -ms-border-radius: 50px;
-            -o-border-radius: 50px;
-            cursor: pointer;
-            margin: 0 .4rem;
-            font-size: 1rem;
-        }
-
-        .login .btn, .login .btn2 {
-            background-color: var(--icon-bg);
-            color: var(--navbar-color);
-            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .1);
-            transition: all .3s ease;
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
-        }
-
-        .login .btn:hover, .login .btn2:hover { background: var(--button); color: var(--white); }
-
-        /* Mobile navigation toggle */
-        .menu-toggle {
-            display: none; /* Hidden by default on desktop */
-            font-size: 3rem; /* Larger icon */
-            cursor: pointer;
-            color: var(--navbar-color);
-        }
-
-        /* Mobile menu active states */
-        @media (max-width: 1160px) {
-            .header .navBar, .header .login {
-                display: none; /* Hide desktop nav and login buttons */
-            }
-            .menu-toggle {
-                display: block; /* Show hamburger icon */
-            }
-
-            .navBar.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100px; /* Below header */
-                left: 0;
-                width: 100%;
-                background-color: white;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                z-index: 10;
-                padding: 1rem 0;
-            }
-            .navBar.active ul {
-                flex-direction: column;
-                width: 100%;
-                padding: 0;
-                margin: 0;
-            }
-            .navBar.active ul li {
-                width: 100%;
-                padding: 0;
-                text-align: center;
-            }
-            .navBar.active ul li a {
-                display: block;
-                padding: 0.8rem 1rem;
-                border-bottom: 1px solid #eee; /* Separator */
-            }
-            .navBar.active ul li:last-child a {
-                border-bottom: none;
-            }
-
-            .login.active {
-                display: flex;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: auto; /* Will be positioned by JS after navBar */
-                left: 0;
-                background-color: white;
-                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-                z-index: 10;
-                padding: 1rem 0;
-                border-top: 1px solid #eee; /* Separator from nav */
-            }
-            .login.active .btn, .login.active .btn2 {
-                margin: 0.5rem auto; /* Center buttons */
-                width: 80%; /* Make buttons wider */
-            }
-        }
-
-
-        /*MAIN*/
-
-        .main {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-top: 5%; /* Adjusted margin-top after removing select box */
-            padding: 0 1rem; /* Added padding for smaller screens */
-            flex-wrap: wrap; /* Allow wrapping on smaller screens */
-            background: linear-gradient(305deg, rgba(241, 241, 241, 1) 28%, rgba(187, 255, 252, 1) 58%, rgba(148, 233, 255, 1) 100%); /* Added background gradient */
-            flex-grow: 1; /* Allow main content to grow */
-        }
-
-        .main .main-content .text { width: 500px; }
-        .main .main-content .text h1 {
-            font-size: 3.2rem;
-            color: var(--navbar-color);
-            font-weight: 900;
-        }
-
-        .main .main-content .text p {
-            color: var(--navbar-color);
-            font-weight: 400;
-            margin-top: 2rem;
-        }
-
-        /* Removed .main .main-content .select related styles */
-
-        .main .img {
-            width: 420px;
-            height: 320px;
-        }
-
-        .main .img img {
-            border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
-            -webkit-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
-            -moz-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
-            -ms-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
-            -o-border-radius: 71% 29% 27% 73% / 37% 53% 47% 63%;
-            width: 100%;
-        }
-
-        .main2 { margin-top: 15%; padding: 0 1rem;} /* Added padding */
-
-        .main2 h1 {
-            text-align: center;
-            color: var(--navbar-color);
-            font-size: 2.8rem;
-        }
-
-        .main2 .main-card {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            place-items: center;
-            gap: 2rem; /* Added gap */
-        }
-
-        /* Responsive adjustments for .main2 .main-card */
-        @media (max-width: 1160px) { /* For tablets */
-            .main2 .main-card {
-                grid-template-columns: repeat(2, 1fr); /* 2 columns */
-            }
-        }
-        @media (max-width: 768px) { /* For larger phones */
-            .main2 .main-card {
-                grid-template-columns: 1fr; /* 1 column */
-            }
-        }
-
-        .main2 .main-card .card {
-            margin-top: 6rem;
-            width: 320px;
-            height: 350px;
-            background-color: #F8F8F8;
-            text-align: center;
-            padding: 1.25rem 1rem;
-            border: 1px solid var(--button);
-            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .1);
-            border-radius: 12px;
-            -webkit-border-radius: 12px;
-            -moz-border-radius: 12px;
-            -ms-border-radius: 12px;
-            -o-border-radius: 12px;
-        }
-
-        .main2 .main-card .card .icon-img {
-            background-color: var(--icon-bg); /* Changed to variable */
-            border-radius: 50%;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            -o-border-radius: 50%;
-            width: 75px;
-            height: 75px;
-            position: relative;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .1);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .main2 .main-card .card .icon-img img { padding: 1.25rem; }
-
-        .main2 .main-card .card h3 {
-            margin-top: 2rem;
-            color: var(--navbar-color);
-            font-size: 1.4rem;
-        }
-
-        .main2 .main-card .card p {
-            margin-top: 1.5rem;
-            color: var(--navbar-color);
-            font-weight: 300;
-            font-size: .85rem;
-        }
-
-        /*EXPLORE*/
-
-        .explore {
-            margin-top: 15%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 0 3rem; /* Added padding */
-            flex-wrap: wrap; /* Allow wrapping */
-        }
-
-        .explore .img-exp img {
-            border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
-            -webkit-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
-            -moz-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
-            -ms-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
-            -o-border-radius: 32% 68% 49% 51% / 28% 53% 47% 72%;
-        }
-
-        .explore .content-exp { width: 550px; }
-        .explore .content-exp h2 { color: var(--navbar-color); font-size: 1.8rem; }
-
-        .explore .content-exp p {
-            margin-top: 2rem;
-            color: var(--navbar-color);
-            font-weight: 400;
-            font-size: .9rem;
-        }
-
-        .explore .content-exp .btn-exp {
-            width: 150px;
-            height: 45px;
-            border: none;
-            outline: none;
-            border-radius: 50px;
-            -webkit-border-radius: 50px;
-            -moz-border-radius: 50px;
-            -ms-border-radius: 50px;
-            -o-border-radius: 50px;
-            cursor: pointer;
-            margin-top: 2.5rem;
-            font-size: 1rem;
-            background-color: var(--button);
-            color: var(--white);
-            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
-            transition: all .3s ease;
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
-        }
-
-        .explore .content-exp .btn-exp:hover { background-color: var(--icon-bg); color: var(--navbar-color); }
-
-        /*HOUSES*/
-
-        .houses { margin-top: 15%; padding: 0 1rem; } /* Added padding */
-
-        .houses .content-house {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 6%;
-            flex-wrap: wrap; /* Allow wrapping */
-            gap: 1rem; /* Added gap */
-        }
-
-        .houses .content-house .text-house { width: 500px; }
-
-        .houses .content-house .text-house p {
-            margin-top: 2rem;
-            color: var(--navbar-color);
-            font-weight: 400;
-            font-size: 1rem;
-        }
-
-        /* Removed .select-dropdown styles as it's no longer needed */
-
-        .house-box {
-            margin-top: 10%;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            place-items: center;
-            gap: 3rem;
-            padding: 0 1rem; /* Added padding */
-        }
-
-        /* Responsive adjustments for .house-box */
-        @media (max-width: 768px) { /* For larger phones and tablets */
-            .house-box {
-                grid-template-columns: 1fr; /* 1 column */
-            }
-        }
-
-        .box {
-            background-color: var(--white);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 550px;
-            height: 300px;
-            border: 1px solid var(--button);
-            border-radius: 6px;
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            -ms-border-radius: 6px;
-            -o-border-radius: 6px;
-            box-shadow: 0px 18px 14px 10px rgba(0, 0, 0, .18);
-            cursor: pointer; /* Make cards clickable */
-            transition: transform 0.2s ease;
-        }
-        .box:hover {
-            transform: translateY(-5px);
-        }
-
-        .box .box-img {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-left: 0.5rem;
-            width: 250px; /* Fixed width for image container */
-            height: 100%; /* Fill height of box */
-            overflow: hidden; /* Hide overflow for rounded corners */
-            border-radius: 6px 0 0 6px; /* Match box border radius */
-        }
-        .box .box-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensure image covers the area */
-        }
-
-        .box-content {
-            position: relative;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1rem; /* Added padding */
-            flex-grow: 1; /* Allow content to take remaining space */
-        }
-
-        .box-content .box-text {
-            margin-bottom: 3rem;
-            margin-left: 0; /* Reset margin */
-            text-align: left;
-            color: var(--navbar-color);
-        }
-
-        /* Updated .box-content .rooms for better alignment */
-        .box-content .rooms {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Keep 2 columns as per screenshot */
-            gap: 0.75rem 0.5rem; /* Increased gap for better separation (row-gap column-gap) */
-            justify-items: start; /* Align content to the start (left) of each grid cell */
-            align-items: center; /* Vertically center content in each grid cell */
-            margin-top: 1rem; /* Provide consistent top margin */
-            margin-bottom: 1rem; /* Provide consistent bottom margin */
-            padding-left: 0.5rem; /* Small left padding to prevent content hugging the edge */
-        }
-
-        /* Ensure .room itself is a flex container for icon-text alignment */
-        .rooms .room {
-            display: flex;
-            align-items: center; /* Align icon and text vertically */
-            gap: 0.35rem; /* Space between icon and text */
-        }
-
-        .box-btn .view .btn {
-            width: 120px;
-            height: 30px;
-            border: none;
-            outline: none;
-            border-radius: 50px;
-            -webkit-border-radius: 50px;
-            -moz-border-radius: 50px;
-            -ms-border-radius: 50px;
-            -o-border-radius: 50px;
-            cursor: pointer;
-            margin: 0 .4rem;
-            font-size: .95rem;
-            background-color: var(--button);
-            color: var(--white);
-            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
-            transition: all .3s ease;
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
-        }
-
-        .view .btn:hover {
-            background-color: var(--icon-bg);
-            color: var(--navbar-color);
-        }
-
-        .box-btn .share {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .share .share-box {
-            background-color: var(--icon-bg);
-            border-radius: 50%;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            -o-border-radius: 50%;
-            padding: 0.6rem;
-            box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, .18);
-            cursor: pointer;
-            transition: all .3s ease;
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
-        }
-
-        .share-box:hover {
-            transform: scale(1.1);
-            -webkit-transform: scale(1.1);
-            -moz-transform: scale(1.1);
-            -ms-transform: scale(1.1);
-            -o-transform: scale(1.1);
-        }
-
-        .share-box img {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        /* Custom CSS for the shaking animation */
+        @keyframes shake {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(5deg); }
+            50% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+            100% { transform: rotate(0deg); }
         }
-
-        /*CLIENTS*/
-
-        .clients {
-            position: relative;
-            margin-top: 15%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 3rem;
-            flex-wrap: wrap; /* Allow wrapping */
-        }
-
-        .clients .left .customer {
-            border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
-            -webkit-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
-            -moz-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
-            -ms-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
-            -o-border-radius: 85% 15% 31% 69% / 64% 36% 64% 36%;
-        }
-
-        .clients .right { width: 750px; }
-
-        .right h2 {
-            font-size: 2.4rem;
-            color: var(--navbar-color);
-            margin-bottom: 10%;
-        }
-
-        .right p {
-            color: var(--navbar-color);
-            font-weight: 400;
-            font-size: 1.15rem;
-            margin-bottom: 5%;
-        }
-
-        .right .name { margin-top: 3rem; }
-        .name h4 { color: var(--navbar-color); font-size: 1.25rem; }
-        .name p { font-size: .9rem; }
-
-        /*OWNER*/
-
-        .owner {
-            position: relative;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 20%;
-            background-color: var(--white);
-            width: 750px;
-            height: 200px;
-            box-shadow: 2px 12px 12px 18px rgba(0, 0, 0, .18);
-            border-radius: 6px;
-            -webkit-border-radius: 6px;
-            -moz-border-radius: 6px;
-            -ms-border-radius: 6px;
-            -o-border-radius: 6px;
-            padding: 1rem;
-            display: flex; /* Added for centering content */
-            flex-direction: column; /* Added for centering content */
-            justify-content: center; /* Added for centering content */
-            align-items: center; /* Added for centering content */
-        }
-
-        .owner .owner-text { text-align: center; }
-
-        .owner-text h2 {
-            color: var(--navbar-color);
-            font-size: 1.8rem;
-        }
-
-        .owner-text p {
-            color: var(--navbar-color);
-            font-size: 1rem;
-            font-weight: 400;
-        }
-
-        .subscribe {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .subscribe form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .subscribe img {
-            position: absolute;
-            left: 10px;
-            top: 15px;
-            cursor: pointer;
+        .shake-icon {
+            animation: shake 0.6s infinite linear; /* Slightly longer duration for smoother shake */
+            transform-origin: center; /* Ensure rotation is around the center */
         }
 
-        .subscribe input[type="email"] {
-            width: 340px;
-            height: 50px;
-            border: 1px solid var(--button);
-            outline: none;
-            padding: 0 25px;
-            text-align: center;
-            background: #E0E0C4;
-            border-radius: 25px 0 0 25px;
-            -webkit-border-radius: 25px 0 0 25px;
-            -moz-border-radius: 25px 0 0 25px;
-            -ms-border-radius: 25px 0 0 25px;
-            -o-border-radius: 25px 0 0 25px;
+        /* Splash screen animations */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
         }
-
-        ::placeholder {
-            color: #000000;
-            font-size: 1rem;
-            transition: opacity .3s ease;
-            -webkit-transition: opacity .3s ease;
-            -moz-transition: opacity .3s ease;
-            -ms-transition: opacity .3s ease;
-            -o-transition: opacity .3s ease;
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
-
-        :focus::placeholder { opacity: .3; }
-
-        .subscribe input[type="submit"] {
-            position: relative;
-            width: 150px;
-            height: 50px;
-            border: none;
-            outline: none;
-            cursor: pointer;
-            background: var(--button);
-            color: var(--white);
-            left: -25px;
-            border-radius: 25px;
-            -webkit-border-radius: 25px;
-            -moz-border-radius: 25px;
-            -ms-border-radius: 25px;
-            -o-border-radius: 25px;
-            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
-            transition: all .3s ease;
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
+        .animate-fadeInScale {
+            animation: fadeInScale 1s ease-out forwards;
         }
-
-        .subscribe input[type="submit"]:hover {
-            background: var(--icon-bg);
-            color: var(--navbar-color);
+        .animate-bounce-slow {
+            animation: bounceSlow 2s infinite ease-in-out;
         }
 
-        /*FOOTER*/
-
-        .footer {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(305deg, rgba(241, 241, 241, 1) 28%, rgba(187, 255, 252, 1) 58%, rgba(148, 233, 255, 1) 100%);
-            margin-top: 15%;
-            border-top-left-radius: 50px;
-            border-top-right-radius: 50px;
-            padding: 1.2rem;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap; /* Allow wrapping */
-            gap: 1rem; /* Added gap */
+        /* SVG House Animation */
+        @keyframes drawHouse {
+            0% { stroke-dashoffset: 1000; opacity: 0; transform: scale(0.5); }
+            70% { stroke-dashoffset: 0; opacity: 1; transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
 
-        .footer .estate {
-            margin-top: 1rem;
-            width: 300px;
+        .splash-house-svg path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawHouse 2s ease-out forwards;
+            stroke: white; /* Color of the drawing line */
+            stroke-width: 4;
+            fill: none;
         }
-
-        .estate h2 {
-            color: var(--navbar-color);
-            font-size: 1.8rem;
+        .splash-house-svg circle {
+            fill: white; /* Color of the circle */
+            opacity: 0;
+            animation: fadeInScale 0.5s ease-out 1.8s forwards; /* Fade in after drawing */
         }
-
-        .estate p {
-            color: var(--navbar-color);
-            font-weight: 400;
-            font-size: 1rem;
+        .splash-house-svg .fill-path {
+            fill: white;
+            opacity: 0;
+            animation: fadeInScale 0.5s ease-out 1.8s forwards; /* Fade in after drawing */
         }
 
-        .estate .social {
-            margin-top: 1.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 1.3rem;
+        /* Splash screen text animation */
+        .splash-text-fade-in {
+            opacity: 0;
+            animation: fadeInScale 0.8s ease-out 2.2s forwards; /* Delay after house animation */
         }
 
-        .estate .social .icon {
-            background-color: var(--icon-bg);
-            width: 60px;
-            height: 60px;
-            box-shadow: 0px 12px 12px 0px rgba(0, 0, 0, .15);
-            border-radius: 50%;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            -ms-border-radius: 50%;
-            -o-border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: all .3s ease;
-            -webkit-transition: all .3s ease;
-            -moz-transition: all .3s ease;
-            -ms-transition: all .3s ease;
-            -o-transition: all .3s ease;
+        /* Hero section animations */
+        .hero-image-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
-
-        .estate .social .icon:hover {
-            transform: scale(1.05);
-            -webkit-transform: scale(1.05);
-            -moz-transform: scale(1.05);
-            -ms-transform: scale(1.05);
-            -o-transform: scale(1.05);
+        .hero-text-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
-
-        .footer h4 {
-            margin-bottom: 1.2rem;
-            color: var(--navbar-color);
-            font-size: 1.25rem;
-            font-weight: 700;
-            cursor: pointer;
+        .hero-button-animate {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
         }
 
-        .footer .about p {
-            color: var(--navbar-color);
-            font-weight: 400;
-            padding: 0.25rem 0;
-            cursor: pointer;
+        /* Screen transition styling */
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out; /* Smoother transition */
         }
-
-        .footer .store {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
+        .screen.active {
+            display: block;
+            opacity: 1;
         }
-
-        .store img { cursor: pointer; }
 
-        /* MODAL STYLES */
-        .modal {
+        /* Custom modal styling for better appearance */
+        .custom-modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 9999;
             opacity: 0;
             visibility: hidden;
             transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
         }
-        .modal.show {
+
+        .custom-modal-overlay.show {
             opacity: 1;
             visibility: visible;
         }
-        .modal-content {
+
+        .custom-modal-content {
             background-color: white;
             padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-            width: 95%;
-            max-width: 900px; /* Increased max-width for better detail view */
-            max-height: 90vh;
+            border-radius: 1.25rem; /* More rounded corners */
+            max-width: 90%;
+            max-height: 90%;
             overflow-y: auto;
             position: relative;
-            transform: translateY(-20px);
+            transform: translateY(-30px); /* More pronounced slide-in */
             transition: transform 0.3s ease-in-out;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Deeper shadow */
         }
-        .modal.show .modal-content {
+
+        .custom-modal-overlay.show .custom-modal-content {
             transform: translateY(0);
         }
-        .modal-close-btn {
+
+        /* Hide scrollbar for aesthetic purposes, but allow scrolling */
+        .custom-modal-content::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+        }
+        .custom-modal-content {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+
+        /* Apply Inter font globally */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom styling for header navigation links */
+        .nav-link {
+            position: relative;
+            padding-bottom: 0.25rem; /* Space for underline */
+        }
+        .nav-link::after {
+            content: '';
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #64748b;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px; /* Underline thickness */
+            background-color: #3b82f6; /* Blue-500 */
+            transition: width 0.3s ease-in-out;
         }
-        .modal-close-btn:hover {
-            color: var(--navbar-color);
-        }
-        .modal-details {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .modal-details .main-image-container {
+        .nav-link:hover::after {
             width: 100%;
-            height: 350px; /* Fixed height for main image */
-            overflow: hidden;
-            border-radius: 0.5rem;
         }
-        .modal-details .main-image-container img {
+        .nav-link.active-link::after {
+            width: 100%; /* Always active for the current page */
+            background-color: #2563eb; /* Blue-600 */
+        }
+
+        /* Header shadow on scroll */
+        .header-scrolled {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Mobile Sidebar specific styles */
+        #mobile-sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px; /* Width of the sidebar */
+            height: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transform: translateX(-100%); /* Hidden by default */
+            transition: transform 0.4s ease-in-out;
+            z-index: 1000; /* Above overlay */
+            display: flex; /* Use flexbox for internal layout */
+            flex-direction: column;
+            padding: 1.5rem; /* Consistent padding */
+        }
+
+        #mobile-sidebar.open {
+            transform: translateX(0); /* Show sidebar */
+        }
+
+        #mobile-sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 999; /* Below sidebar, above content */
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
         }
-        .modal-info {
-            padding-top: 1rem;
+
+        #mobile-sidebar-overlay.open {
+            opacity: 1;
+            visibility: visible;
         }
-        .modal-info h2 {
-            font-size: 2.2rem;
-            color: var(--navbar-color);
-            margin-bottom: 1rem;
+
+        /* Hide desktop nav elements on mobile */
+        @media (max-width: 767px) {
+            .md\\:hidden-on-mobile {
+                display: none !important;
+            }
+            .md\\:flex-on-mobile {
+                display: flex !important;
+            }
         }
-        .modal-info .price {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--button);
-            margin-bottom: 1rem;
-        }
-        .modal-info .property-specs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .modal-info .property-specs div {
-            display: flex;
-            align-items: center;
-            font-size: 1rem;
-            color: var(--navbar-color);
-        }
-        .modal-info .property-specs img {
-            width: 20px;
-            height: 20px;
-            margin-right: 0.5rem;
-        }
-        .modal-info .description {
-            font-size: 1rem;
-            color: var(--navbar-color);
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-        .modal-sub-images {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-            margin-top: 1.5rem;
-            justify-content: center;
-        }
-        .modal-sub-images img {
-            width: 100px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: border-color 0.2s ease;
-        }
-        .modal-sub-images img:hover, .modal-sub-images img.active {
-            border-color: var(--button);
-        }
-        .modal-contact-btn {
+
+        /* Thunderstorm styles for splash screen */
+        .thunderstorm-container {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding: 0.75rem 1.5rem;
-            background-color: var(--button);
-            color: var(--white);
-            border: none;
-            outline: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-top: 1.5rem;
-            transition: background-color 0.2s ease;
-        }
-        .modal-contact-btn:hover {
-            background-color: #2a5a6b; /* Slightly darker shade */
+            height: 150px; /* Height of the thunderstorm effect at the top */
+            overflow: hidden;
+            z-index: 10; /* Below main splash content */
+            pointer-events: none; /* Allow clicks to pass through */
         }
 
-
-        /* Responsive adjustments */
-        @media (min-width: 769px) { /* Desktop styles for modal */
-            .modal-details {
-                flex-direction: row;
-            }
-            .modal-details .main-image-container {
-                width: 50%;
-                height: auto; /* Allow height to adjust */
-            }
-            .modal-info {
-                width: 50%;
-                padding-left: 1.5rem;
-            }
+        .cloud {
+            position: absolute;
+            background: #4a5568; /* Dark gray for clouds */
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: cloud-move linear infinite;
         }
 
-        @media (max-width: 1160px) {
-            .header .login .btn,
-            .header .login .btn2 {
-                width: 75px;
-                height: 40px;
-                font-size: .6rem;
-            }
-
-            .header .logo img {width: 160px; }
-
-            .main-content {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-            }
-
-            .main-content .text h1 { font-size: 1.4rem; }
-            .main-content .text p { font-size: .9rem; }
-
-            .main .main-content .text {
-                position: relative;
-                margin-left: auto;
-                margin-right: auto;
-                width: 350px;
-            }
-
-            /* Removed main .main-content .select styles for mobile */
-
-            .main .img { display: none; }
-
-            .explore { flex-direction: column; }
-
-            .explore .content-exp {
-                width: 350px;
-                text-align: center;
-                margin-top: 2rem;
-            }
-
-            .house-box .box { width: 450px; height: 240px; }
-            .house-box .box .box-img { width: 200px; height: auto; }
-            .box .box-img img {width: 100%; }
-
-            .box-text h3 {
-                font-size: 1rem;
-                margin-top: 1rem;
-                margin-bottom: -0.75rem;
-            }
-
-            /* Adjusted for smaller screens (existing media query) */
-            .box-content .rooms {
-                margin-top: 0.5rem; /* Adjusted to a small positive margin */
-                gap: 0.5rem; /* Adjusted gap for smaller screens */
-            }
-            .box-content .box-text {
-                margin-bottom: 1rem; /* Reduced for better flow */
-            }
-            .box-text .price {
-                margin-top: 0.5rem; /* Adjusted */
-            }
-
-            .box-content .box-btn { margin-top: 0.6rem; }
-            .box-btn img { width: 15px; height: auto; }
-
-            .clients {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .clients .right {
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                width: 450px;
-            }
-
-            .clients .right h2 { font-size: 1.4rem; }
-
-            .right p { font-size: .9rem; }
-
-            .owner { width: 450px; }
-            .owner-text h2 { font-size: 1.2rem; }
-            .owner-text p { font-size: 0.8rem; }
-
-            .subscribe input[type="email"] { width: 240px; }
-            .subscribe img { width: 20px; height: auto; }
-            .subscribe input[type="submit"]{ width: 80px; font-size: .8rem; }
-            ::placeholder { font-size: .75rem; }
-
-            .footer {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                height: 700px;
-                margin-top: 25%;
-                text-align: center;
-            }
-
-            .footer .estate h2 { font-size: 1rem; }
-            .footer h4 { font-size: .9rem; margin-top: 2rem; }
-            .footer .about p { font-size: .7rem; }
-            .footer .store { margin-top: 2rem; }
-            .footer .store img { width: 150px; height: auto; }
-
-            .estate p { font-size: .75rem; }
-            .estate .social .icon { width: 40px; height: 40px; }
-            .icon img { width: 20px; height: auto; }
+        .cloud-1 {
+            width: 120px;
+            height: 70px;
+            top: 20px;
+            left: -50px;
+            animation-duration: 40s;
+            animation-delay: 0s;
+        }
+        .cloud-2 {
+            width: 150px;
+            height: 80px;
+            top: 50px;
+            left: -100px;
+            animation-duration: 35s;
+            animation-delay: -10s;
+        }
+        .cloud-3 {
+            width: 100px;
+            height: 60px;
+            top: 30px;
+            left: -200px;
+            animation-duration: 45s;
+            animation-delay: -20s;
         }
 
-        @media (max-width: 490px) {
-            .header .login .btn, .header .login .btn2 { display: none; }
+        @keyframes cloud-move {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(100vw + 200px)); } /* Move across the screen */
+        }
 
-            .explore .img-exp img { width: 320px; }
+        .lightning {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8); /* Bright white flash */
+            opacity: 0;
+            animation: lightning-flash 8s infinite; /* Flash every 8 seconds */
+        }
 
-            .house-box .box { width: 320px; height: 300px; }
-            .house-box .box .box-img { display: none; } /* Hide image on smallest screens for card */
-
-            .clients .right { width: 320px; }
-            .clients .left .customer { width: 320px;}
-
-            .owner { width: 340px; }
-
-            /* For very small screens, force to 1 column and center */
-            .box-content .rooms {
-                grid-template-columns: 1fr; /* Force to 1 column on very small screens */
-                justify-items: center; /* Center items when in a single column */
-                gap: 0.5rem;
-            }
-            .rooms .room {
-                justify-content: center; /* Center the icon and text within the room */
-            }
+        @keyframes lightning-flash {
+            0%, 90% { opacity: 0; }
+            91% { opacity: 0.8; }
+            92% { opacity: 0; }
+            93% { opacity: 0.6; }
+            94% { opacity: 0; }
+            95% { opacity: 0.7; }
+            96%, 100% { opacity: 0; }
         }
     </style>
 </head>
-<body>
-    <header class="header">
-        <div class="logo">
-            <img src="https://i.postimg.cc/htCbVtzQ/logo.png" alt="logo">
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 bg-gradient-to-br from-blue-700 to-indigo-900 flex flex-col items-center justify-center z-[10000] transition-opacity duration-700 ease-in-out">
+        <!-- Thunderstorm Effect at the top -->
+        <div class="thunderstorm-container">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+            <div class="lightning"></div>
         </div>
 
-        <div class="menu-toggle" id="mobileMenuToggle">
-            <i class="material-icons">menu</i>
+        <div class="animate-fadeInScale flex flex-col items-center">
+            <!-- SVG House Icon -->
+            <svg class="splash-house-svg w-40 h-40 mb-6" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- House outline -->
+                <path d="M100 20L180 80V180H20V80L100 20Z" stroke="white" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                <!-- Door -->
+                <path d="M80 120V180H120V120H80Z" stroke="white" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                <!-- Window 1 -->
+                <rect x="40" y="100" width="25" height="25" rx="5" stroke="white" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                <!-- Window 2 -->
+                <rect x="135" y="100" width="25" height="25" rx="5" stroke="white" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                <!-- Chimney -->
+                <path d="M140 50V30H160V60L140 50Z" stroke="white" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                <!-- Roof line -->
+                <path d="M100 20L20 80M100 20L180 80" stroke="white" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+                <!-- Small circle for "dot" on roof -->
+                <circle cx="100" cy="50" r="8" class="fill-path"/>
+            </svg>
+            <h1 class="text-white text-6xl font-extrabold tracking-wide text-center drop-shadow-lg splash-text-fade-in">Emmy Estate</h1>
+            <p class="text-white text-xl mt-4 text-center opacity-90 splash-text-fade-in">Your Gateway to Dream Properties</p>
         </div>
+    </div>
 
-        <nav class="navBar" id="mainNavBar">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Browse House</a></li>
-                <li><a href="#">Sell your house</a></li>
-            </ul>
+    <!-- Header -->
+    <header id="main-header" class="bg-white shadow-lg fixed w-full z-50 transition-all duration-300 ease-in-out">
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="#" class="text-3xl font-extrabold text-blue-800 hover:text-blue-600 transition-colors duration-200" onclick="showScreen('home-screen', this)">Emmy Estate</a>
+            </div>
+
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#" class="text-gray-700 text-lg font-medium hover:text-blue-600 transition-colors duration-200 py-2 px-3 rounded-md nav-link" onclick="showScreen('home-screen', this)">Home</a>
+                <a href="#" class="text-gray-700 text-lg font-medium hover:text-blue-600 transition-colors duration-200 py-2 px-3 rounded-md nav-link" onclick="showScreen('explore-screen', this)">Explore</a>
+                <a href="#" class="text-gray-700 text-lg font-medium hover:text-blue-600 transition-colors duration-200 py-2 px-3 rounded-md nav-link" onclick="showScreen('admin-panel-screen', this)">Admin Panel</a>
+                <a href="#" class="text-gray-700 text-lg font-medium hover:text-blue-600 transition-colors duration-200 py-2 px-3 rounded-md nav-link" onclick="showScreen('browse-house-screen', this)">Browse House</a>
+                <a href="#" class="text-gray-700 text-lg font-medium hover:text-blue-600 transition-colors duration-200 py-2 px-3 rounded-md nav-link" onclick="showScreen('sell-house-screen', this)">Sell your house</a>
+            </div>
+
+            <!-- Desktop Buttons and Mobile Hamburger -->
+            <div class="flex items-center space-x-4">
+                <button class="hidden md:block bg-blue-600 text-white px-6 py-2.5 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg transform hover:-translate-y-1">Login</button>
+                <button class="hidden md:block bg-gray-200 text-gray-800 px-6 py-2.5 rounded-xl text-lg font-semibold hover:bg-gray-300 transition-all duration-300 shadow-lg transform hover:-translate-y-1">Create Account</button>
+                <button class="md:hidden text-gray-700 text-3xl focus:outline-none p-2 rounded-xl bg-gray-100 hover:bg-gray-200 transition-colors duration-200 shadow-md" id="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </nav>
-
-        <div class="login" id="mainLoginButtons">
-            <button class="btn" id="loginBtn">Login</button>
-            <button class="btn2" id="createAccountBtn">Create Account</button>
-        </div>
     </header>
 
-    <div class="main">
-        <div class="main-content">
-            <div class="text">
-                <h1>When you're ready for a change, we're ready to help</h1>
-                <p>Our team is here to support you every step of the way. Let's embark on this journey together and create the future you desire!</p>
-            </div>
-            <!-- Removed the select location, select type, and select price range dropdowns -->
+    <!-- Mobile Sidebar Overlay -->
+    <div id="mobile-sidebar-overlay" class="hidden" onclick="toggleMobileSidebar()"></div>
+
+    <!-- Mobile Sidebar (Header on Mobile) -->
+    <div id="mobile-sidebar" class="md:hidden">
+        <div class="flex justify-between items-center mb-8">
+            <a href="#" class="text-3xl font-extrabold text-blue-800" onclick="showScreen('home-screen', this); toggleMobileSidebar();">Emmy Estate</a>
+            <button class="text-gray-600 hover:text-gray-900 text-3xl focus:outline-none p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors duration-200" onclick="toggleMobileSidebar()">&times;</button>
         </div>
 
-        <div class="img">
-            <img src="https://i.postimg.cc/9Qr5dz8v/house-1.png" alt="image">
+        <div class="flex flex-col space-y-4 flex-grow">
+            <a href="#" class="mobile-nav-link block py-3 px-4 text-gray-800 text-lg font-medium hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200" onclick="showScreen('home-screen', this); toggleMobileSidebar();">Home</a>
+            <a href="#" class="mobile-nav-link block py-3 px-4 text-gray-800 text-lg font-medium hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200" onclick="showScreen('explore-screen', this); toggleMobileSidebar();">Explore</a>
+            <a href="#" class="mobile-nav-link block py-3 px-4 text-gray-800 text-lg font-medium hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200" onclick="showScreen('admin-panel-screen', this); toggleMobileSidebar();">Admin Panel</a>
+            <a href="#" class="mobile-nav-link block py-3 px-4 text-gray-800 text-lg font-medium hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200" onclick="showScreen('browse-house-screen', this); toggleMobileSidebar();">Browse House</a>
+            <a href="#" class="mobile-nav-link block py-3 px-4 text-gray-800 text-lg font-medium hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors duration-200" onclick="showScreen('sell-house-screen', this); toggleMobileSidebar();">Sell your house</a>
         </div>
-    </div>
 
-    <div class="main2">
-        <h1>Why choose us</h1>
-        <div class="main-card">
-            <div class="card">
-                <div class="icon-img">
-                    <img src="https://i.postimg.cc/QC4MxCdh/tax.png" alt="icon">
-                </div>
-                <h3>Tax Advantages</h3>
-                <p>When you choose our company, you can take advantage of various tax benefits, including mortgage interest deductions, property tax deductions and depreciation benefits for rental properties</p>
-            </div>
-
-            <div class="card">
-                <div class="icon-img">
-                    <img src="https://i.postimg.cc/t4yXQF5W/property.png" alt="icon">
-                </div>
-                <h3>Property insurances</h3>
-                <p>We give to our customers insurances that includes protection for your home and personal belongings from damages or theft and protection against damages caused by flooding, not typically covered by homeowners insurance</p>
-            </div>
-
-            <div class="card">
-                <div class="icon-img">
-                    <img src="https://i.postimg.cc/8PN3T42p/com.png" alt="icon">
-                </div>
-                <h3>Lowest Comission</h3>
-                <p>We are proud to offer the lowest commissions to our valued customers! Your satisfaction is our priority!</p>
-            </div>
-
-            <div class="card">
-                <div class="icon-img">
-                    <img src="https://i.postimg.cc/SxjgKvDh/money.png" alt="icon">
-                </div>
-                <h3>Best Prices</h3>
-                <p>We are proud to offer you the best prices in the market! Your dream home is just a click away. Let us help you find it!</p>
-            </div>
+        <div class="mt-auto pt-6 border-t border-gray-200">
+            <button class="w-full bg-blue-600 text-white px-5 py-3 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-all duration-300 shadow-lg">Login</button>
+            <button class="w-full mt-4 bg-gray-200 text-gray-800 px-5 py-3 rounded-xl text-lg font-semibold hover:bg-gray-300 transition-all duration-300 shadow-lg">Create Account</button>
         </div>
     </div>
 
-    <div class="explore">
-        <div class="img-exp">
-            <img src="https://i.postimg.cc/QN7zcCLy/house-2.png" alt="image">
-        </div>
-        <div class="content-exp">
-            <h2>We are all biochemically unique. Buying or selling your home should be, too</h2>
-            <p>Just as our fingerprints are individual, so too are our needs and desires when it comes to finding the perfect home. The traditional, one-size-fits-all approach to real estate simply doesn't resonate with this truth. We take the time to truly understand your specific needs, aspirations, and anxieties, tailoring our services to create a personalized experience that reflects your individuality</p>
-            <button class="btn-exp" id="exploreMoreBtn">Explore More</button>
-        </div>
-    </div>
-
-    <div class="houses">
-        <div class="content-house">
-            <div class="text-house">
-                <h2>Our trending latest property</h2>
-                <p> Our latest listings feature properties in sought-after locations, with unique designs and sustainable features that cater to the evolving preferences of buyers</p>
-            </div>
-            <!-- Removed the select-dropdown HTML element -->
-        </div>
-
-        <div class="house-box" id="trendingPropertiesGrid">
-            </div>
-    </div>
-
-    <div class="clients">
-        <div class="left">
-            <div class="img-cust">
-                <img src="real.jpg" alt="image" class="customer">
-            </div>
-        </div>
-
-        <div class="right">
-            <h2>What our clients are saying</h2>
-            <p>I am pleased and blessed with my experience with Real Estate. They have the most professional and kindest team. Real Estate went above and beyond, and I am so grateful for their help</p>
-
-            <div class="name">
-                <h4>Alonso Bloodworth</h4>
-                <p>9236 Valley Rd.Quakertown, PA 18951</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="owner">
-        <div class="owner-text">
-            <h2>Are you a property owner?</h2>
-            <p>Put your email address and get listed</p>
-        </div>
-
-        <div class="subscribe">
-            <form id="ownerSubscribeForm">
-                <img src="https://i.postimg.cc/hjKYYd32/send.png" alt="icon">
-                <input type="email" spellcheck="false" placeholder="Enter your email" id="ownerEmailInput" required>
-                <input type="submit" value="Submit" id="ownerSubmitBtn">
-            </form>
-        </div>
-    </div>
-
-    <footer class="footer">
-        <div class="estate">
-            <h2>Real estate</h2>
-            <p>When you're ready for a change, we're ready to help</p>
-
-            <div class="social">
-                <div class="icon">
-                    <a href="https://facebook.com" target="_blank"><img src="https://i.postimg.cc/BQwB9Ktm/facebook.png" alt="Facebook"></a>
+    <!-- Main Content Area - All Screens -->
+    <main class="pt-20">
+        <!-- Home Screen (Landing Page) -->
+        <section id="home-screen" class="screen active">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-[75vh] flex items-center py-20 px-4 sm:px-6">
+                <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-1/2 text-center md:text-left mb-10 md:mb-0">
+                        <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-gray-900 mb-6 drop-shadow-md hero-text-animate" style="transition-delay: 0.3s;">
+                            Find Your <span class="text-blue-700">Dream Home</span> Today
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-700 mb-10 max-w-xl mx-auto md:mx-0 leading-relaxed hero-text-animate" style="transition-delay: 0.5s;">
+                            Explore thousands of curated listings, connect with expert agents, and make your next move with confidence and ease.
+                        </p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center md:justify-start">
+                            <button class="bg-blue-600 text-white px-10 py-4 rounded-xl text-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-xl transform hover:-translate-y-1 hover:scale-105 hero-button-animate" onclick="showScreen('browse-house-screen', this)" style="transition-delay: 0.7s;">
+                                Browse Properties
+                            </button>
+                            <button class="bg-white text-blue-600 border-2 border-blue-600 px-10 py-4 rounded-xl text-xl font-bold hover:bg-blue-50 transition-all duration-300 shadow-xl transform hover:-translate-y-1 hover:scale-105 hero-button-animate" style="transition-delay: 0.9s;">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 hidden md:block">
+                        <img src="https://placehold.co/700x500/ADD8E6/000000?text=Modern+Dream+Home" alt="Modern House" class="rounded-3xl shadow-2xl w-full border-4 border-white transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-in-out hero-image-animate">
+                    </div>
                 </div>
-                
-                <div class="icon">
-                    <a href="https://instagram.com" target="_blank"><img src="https://i.postimg.cc/2SbFzSZr/insta.png" alt="Instagram"></a>
+            </section>
+
+            <!-- Why Choose Us Section -->
+            <section class="py-20 px-4 sm:px-6 bg-white">
+                <div class="container mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-gray-900 leading-tight">Why Choose <span class="text-blue-700">Emmy Estate</span>?</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                        <!-- Card 1 -->
+                        <div class="bg-blue-50 p-8 rounded-2xl shadow-xl text-center transform hover:scale-105 transition-transform duration-300 border-b-4 border-blue-400 hover:border-blue-600">
+                            <div class="text-blue-600 text-6xl mb-6"><i class="fas fa-handshake"></i></div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Expert Guidance</h3>
+                            <p class="text-gray-700 leading-relaxed">Our seasoned agents provide personalized, insightful support, ensuring a smooth journey from start to finish.</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-blue-50 p-8 rounded-2xl shadow-xl text-center transform hover:scale-105 transition-transform duration-300 border-b-4 border-blue-400 hover:border-blue-600">
+                            <div class="text-blue-600 text-6xl mb-6"><i class="fas fa-chart-line"></i></div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Market Insights</h3>
+                            <p class="text-gray-700 leading-relaxed">Leverage our cutting-edge market analysis and trends to make informed and profitable decisions.</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-blue-50 p-8 rounded-2xl shadow-xl text-center transform hover:scale-105 transition-transform duration-300 border-b-4 border-blue-400 hover:border-blue-600">
+                            <div class="text-blue-600 text-6xl mb-6"><i class="fas fa-shield-alt"></i></div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Secure Transactions</h3>
+                            <p class="text-gray-700 leading-relaxed">We guarantee a secure, transparent, and hassle-free process for all your property dealings.</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="bg-blue-50 p-8 rounded-2xl shadow-xl text-center transform hover:scale-105 transition-transform duration-300 border-b-4 border-blue-400 hover:border-blue-600">
+                            <div class="text-blue-600 text-6xl mb-6"><i class="fas fa-tags"></i></div>
+                            <h3 class="text-2xl font-bold mb-4 text-gray-900">Exclusive Deals</h3>
+                            <p class="text-gray-700 leading-relaxed">Access a curated selection of exclusive listings and the most competitive prices tailored just for you.</p>
+                        </div>
+                    </div>
                 </div>
-                
-                <div class="icon">
-                    <a href="https://linkedin.com" target="_blank"><img src="https://i.postimg.cc/kg0NDPQ8/linkedin.png" alt="LinkedIn"></a>
+            </section>
+
+            <!-- Explore More Section -->
+            <section class="py-20 px-4 sm:px-6 bg-gray-50">
+                <div class="container mx-auto flex flex-col md:flex-row items-center justify-between">
+                    <div class="md:w-1/2 mb-10 md:mb-0">
+                        <img src="https://placehold.co/700x500/ADD8E6/000000?text=Discover+More" alt="Cityscape" class="rounded-3xl shadow-2xl w-full border-4 border-white transform -rotate-3 hover:rotate-0 transition-transform duration-500 ease-in-out">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-left md:pl-16">
+                        <h2 class="text-4xl md:text-5xl font-extrabold leading-tight text-gray-900 mb-6">
+                            Discover Endless <span class="text-blue-700">Possibilities</span>
+                        </h2>
+                        <p class="text-lg md:text-xl text-gray-700 mb-10 leading-relaxed">
+                            Whether you're searching for a cozy urban retreat, a sprawling family estate, or a strategic commercial space, our diverse and extensive portfolio holds the key to your next big move.
+                        </p>
+                        <button class="bg-blue-600 text-white px-10 py-4 rounded-xl text-xl font-bold hover:bg-blue-700 transition-all duration-300 shadow-xl transform hover:-translate-y-1 hover:scale-105" onclick="showScreen('browse-house-screen', this)">
+                            Explore All Properties
+                        </button>
+                    </div>
                 </div>
-                
-                <div class="icon">
-                    <a href="https://twitter.com" target="_blank"><img src="https://i.postimg.cc/Wz1gxNVR/twitter.png" alt="Twitter"></a>
+            </section>
+
+            <!-- Our Trending Latest Property Section -->
+            <section id="trending-properties" class="container mx-auto px-4 sm:px-6 py-20">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-6 text-gray-900">Our Trending <span class="text-blue-700">Latest Properties</span></h2>
+                <p class="text-center text-gray-600 mb-16 max-w-3xl mx-auto text-lg leading-relaxed">
+                    Dive into our hand-picked selection of the most sought-after homes available right now, updated daily to bring you the best opportunities.
+                </p>
+                <div id="property-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Property cards will be injected here by JavaScript -->
+                </div>
+            </section>
+
+            <!-- What Our Clients Are Saying Section -->
+            <section class="py-20 px-4 sm:px-6 bg-blue-50">
+                <div class="container mx-auto">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16 text-gray-900">What Our Clients Are <span class="text-blue-700">Saying</span></h2>
+                    <div class="flex flex-col md:flex-row items-center bg-white rounded-3xl shadow-2xl p-8 md:p-12 max-w-5xl mx-auto border-b-4 border-blue-400">
+                        <div class="md:w-1/3 flex justify-center mb-8 md:mb-0">
+                            <img src="https://placehold.co/150x150/ADD8E6/000000?text=Client" alt="Client Testimonial" class="w-36 h-36 rounded-full object-cover border-6 border-blue-200 shadow-xl">
+                        </div>
+                        <div class="md:w-2/3 text-center md:text-left md:pl-12">
+                            <p class="text-2xl italic text-gray-700 mb-6 leading-snug">
+                                "The Emmy Estate team made finding our dream home incredibly easy and stress-free. Their professionalism, deep market knowledge, and unwavering dedication are truly unmatched! We couldn't be happier with our new property."
+                            </p>
+                            <p class="font-bold text-gray-900 text-xl">- Jane Doe</p>
+                            <p class="text-gray-600 text-base mt-1">Lagos, Nigeria</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Are You a Property Owner? Section -->
+            <section class="py-20 px-4 sm:px-6 bg-gradient-to-br from-blue-700 to-indigo-900 text-white text-center">
+                <div class="container mx-auto max-w-4xl">
+                    <h2 class="text-4xl md:text-5xl font-extrabold mb-6 drop-shadow-md">Are You a Property Owner?</h2>
+                    <p class="text-lg md:text-xl mb-10 leading-relaxed opacity-90">
+                        Maximize your property's potential. List your home with us and tap into a vast, qualified network of serious buyers. Get started on your seamless selling journey today!
+                    </p>
+                    <form class="flex flex-col sm:flex-row justify-center items-center space-y-5 sm:space-y-0 sm:space-x-5">
+                        <div class="relative w-full sm:w-2/3">
+                            <input type="email" placeholder="Enter your email to get started" class="w-full p-5 rounded-xl text-gray-900 focus:outline-none focus:ring-4 focus:ring-blue-400 pl-14 shadow-inner text-lg">
+                            <i class="fas fa-envelope absolute left-5 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl"></i>
+                        </div>
+                        <button type="submit" class="bg-white text-blue-700 px-10 py-5 rounded-xl font-bold text-lg hover:bg-gray-200 transition-colors duration-300 shadow-xl transform hover:-translate-y-1 hover:scale-105">
+                            List Your Property
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </section>
+
+        <!-- Admin Panel Main Screen -->
+        <section id="admin-panel-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Admin Panel</h2>
+            <p class="text-center text-gray-600 mb-12">Manage properties, users, and view sales data.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <button class="flex flex-col items-center justify-center bg-blue-600 text-white p-8 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-center" onclick="showScreen('post-new-house-screen', this)">
+                    <i class="fas fa-plus-circle text-5xl mb-4"></i>
+                    <span class="text-2xl font-semibold">Post New House</span>
+                </button>
+                <button class="flex flex-col items-center justify-center bg-green-600 text-white p-8 rounded-xl shadow-lg hover:bg-green-700 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-center" onclick="showScreen('manage-listings-screen', this)">
+                    <i class="fas fa-list-alt text-5xl mb-4"></i>
+                    <span class="text-2xl font-semibold">Manage Listings</span>
+                </button>
+                <button class="flex flex-col items-center justify-center bg-purple-600 text-white p-8 rounded-xl shadow-lg hover:bg-purple-700 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-center" onclick="showScreen('manage-users-screen', this)">
+                    <i class="fas fa-users text-5xl mb-4"></i>
+                    <span class="text-2xl font-semibold">Manage Users</span>
+                </button>
+                <button class="flex flex-col items-center justify-center bg-yellow-600 text-white p-8 rounded-xl shadow-lg hover:bg-yellow-700 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 text-center" onclick="showScreen('view-sales-data-screen', this)">
+                    <i class="fas fa-chart-line text-5xl mb-4"></i>
+                    <span class="text-2xl font-semibold">View Sales Data</span>
+                </button>
+            </div>
+            <button class="mt-12 bg-gray-200 text-gray-800 px-8 py-3 rounded-lg hover:bg-gray-300 transition-colors duration-200 shadow-md w-full max-w-xs mx-auto block" onclick="showScreen('home-screen', this)">Back to Home</button>
+        </section>
+
+        <!-- Product Detail Screen (Placeholder) -->
+        <section id="product-detail-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Product Detail</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will display detailed information about a property.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-info-circle text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Detailed property information will be loaded here when you click "View Details" on a property card.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- Shopping Cart Screen (Placeholder) -->
+        <section id="shopping-cart-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Shopping Cart</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will list items added to the cart.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-shopping-cart text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Your selected properties for purchase will appear here.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- All Categories Screen (Placeholder) -->
+        <section id="all-categories-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">All Categories</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will list all available product categories.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-th-large text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Browse properties by type, location, and more.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- All Orders Screen (Placeholder) -->
+        <section id="all-orders-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">All Orders</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will display a list of user's orders.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-box-open text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Track your property purchases and sales here.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- Order Detail Screen (Placeholder) -->
+        <section id="order-detail-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Order Detail</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will provide detailed tracking information for a specific order.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-truck text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Detailed tracking information for your order.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- Raise a Dispute Screen (Placeholder) -->
+        <section id="raise-dispute-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Raise a Dispute</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will provide a form for users to submit a dispute.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-exclamation-triangle text-red-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Submit a dispute regarding a transaction.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- User Profile Screen (Placeholder) -->
+        <section id="user-profile-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">User Profile</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will display user profile information.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-user-circle text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Manage your personal profile and preferences.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- Seller Onboarding Screen (Placeholder) -->
+        <section id="seller-onboarding-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Seller Onboarding</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will provide a form for new sellers to register.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-user-plus text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Register to become a seller on Emmy Estate.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- Post New House Screen -->
+        <section id="post-new-house-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Post New House</h2>
+            <p class="text-center text-gray-600 mb-12">Use this form to list a new property for sale.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-4xl mx-auto">
+                <form id="post-property-form" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-2">
+                        <label for="property-title" class="block text-gray-700 text-lg font-medium mb-2">Property Title</label>
+                        <input type="text" id="property-title" name="title" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., Luxury Family Home" required>
+                    </div>
+                    <div>
+                        <label for="property-price" class="block text-gray-700 text-lg font-medium mb-2">Price ($$)</label>
+                        <input type="number" id="property-price" name="price" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 550000" required min="0">
+                    </div>
+                    <div>
+                        <label for="property-location" class="block text-gray-700 text-lg font-medium mb-2">Location</label>
+                        <input type="text" id="property-location" name="location" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., California, USA" required>
+                    </div>
+                    <div>
+                        <label for="property-bedrooms" class="block text-gray-700 text-lg font-medium mb-2">Bedrooms</label>
+                        <input type="number" id="property-bedrooms" name="bedrooms" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 4" required min="1">
+                    </div>
+                    <div>
+                        <label for="property-bathrooms" class="block text-gray-700 text-lg font-medium mb-2">Bathrooms</label>
+                        <input type="number" id="property-bathrooms" name="bathrooms" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 3" required min="1">
+                    </div>
+                    <div>
+                        <label for="property-kitchen" class="block text-gray-700 text-lg font-medium mb-2">Kitchens</label>
+                        <input type="number" id="property-kitchen" name="kitchen" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 1" required min="0">
+                    </div>
+                    <div>
+                        <label for="property-area" class="block text-gray-700 text-lg font-medium mb-2">Area (sqft)</label>
+                        <input type="text" id="property-area" name="area" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="e.g., 2500 sqft" required>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="property-description" class="block text-gray-700 text-lg font-medium mb-2">Description</label>
+                        <textarea id="property-description" name="description" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="A detailed description of the property..." required></textarea>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="property-image" class="block text-gray-700 text-lg font-medium mb-2">Upload Main Image</label>
+                        <input type="file" id="property-image" name="image" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" accept="image/*" required>
+                        <img id="property-image-preview" src="" alt="Main Image Preview" class="mt-4 w-32 h-32 object-cover rounded-lg border border-gray-300" style="display: none;">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="property-subimage1" class="block text-gray-700 text-lg font-medium mb-2">Upload Sub Image 1</label>
+                        <input type="file" id="property-subimage1" name="subImage1" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" accept="image/*">
+                        <img id="property-subimage1-preview" src="" alt="Sub Image 1 Preview" class="mt-4 w-32 h-32 object-cover rounded-lg border border-gray-300" style="display: none;">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="property-subimage2" class="block text-gray-700 text-lg font-medium mb-2">Upload Sub Image 2</label>
+                        <input type="file" id="property-subimage2" name="subImage2" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" accept="image/*">
+                        <img id="property-subimage2-preview" src="" alt="Sub Image 2 Preview" class="mt-4 w-32 h-32 object-cover rounded-lg border border-gray-300" style="display: none;">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label for="property-subimage3" class="block text-gray-700 text-lg font-medium mb-2">Upload Sub Image 3</label>
+                        <input type="file" id="property-subimage3" name="subImage3" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" accept="image/*">
+                        <img id="property-subimage3-preview" src="" alt="Sub Image 3 Preview" class="mt-4 w-32 h-32 object-cover rounded-lg border border-gray-300" style="display: none;">
+                    </div>
+
+                    <div class="md:col-span-2 flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4 mt-6">
+                        <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-200 shadow-lg text-lg">
+                            Save Property
+                        </button>
+                        <button type="button" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-xl font-bold hover:bg-gray-300 transition-colors duration-200 shadow-lg text-lg" onclick="showScreen('admin-panel-screen', this)">
+                            Back to Admin Panel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- Edit Product Screen (Placeholder) -->
+        <section id="edit-product-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Edit Property</h2>
+            <p class="text-center text-gray-600 mb-12">This screen will provide a form to modify existing property details.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-edit text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Modify details of your existing property listings. (Form will be here)</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('manage-listings-screen', this)">Back to Manage Listings</button>
+            </div>
+        </section>
+
+        <!-- Manage Listings Screen -->
+        <section id="manage-listings-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Manage Listings</h2>
+            <p class="text-center text-gray-600 mb-12">View, edit, or delete existing property listings.</p>
+            <div id="listings-container" class="bg-white p-8 rounded-xl shadow-lg max-w-5xl mx-auto">
+                <!-- Listings will be rendered here -->
+                <div id="no-listings-message" class="text-center text-gray-500 text-xl py-10" style="display: none;">
+                    No properties listed yet.
+                </div>
+                <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Property listing cards will be injected here -->
+                </div>
+                <button class="mt-8 bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md w-full" onclick="showScreen('admin-panel-screen', this)">Back to Admin Panel</button>
+            </div>
+        </section>
+
+        <!-- Manage Users Screen (Placeholder) -->
+        <section id="manage-users-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Manage Users</h2>
+            <p class="text-center text-gray-600 mb-12">View and manage user accounts and roles.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-users text-green-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">User management interface will be here.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('admin-panel-screen', this)">Back to Admin Panel</button>
+            </div>
+        </section>
+
+        <!-- View Sales Data Screen (Placeholder) -->
+        <section id="view-sales-data-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">View Sales Data</h2>
+            <p class="text-center text-gray-600 mb-12">Access sales reports and analytics.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-chart-line text-yellow-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Sales charts and data tables will be displayed here.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('admin-panel-screen', this)">Back to Admin Panel</button>
+            </div>
+        </section>
+
+        <!-- Seller Dashboard Screen -->
+        <section id="seller-dashboard-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Seller Dashboard <i id="plus-icon" class="fas fa-plus text-blue-600 ml-4 shake-icon"></i></h2>
+            <p class="text-center text-gray-600 mb-12">This screen will display seller listings and sales overview.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-chart-bar text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Monitor your listings, sales, and performance.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- Secure Purchase Flow Screens (Placeholders) -->
+        <section id="product-summary-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Product Summary</h2>
+            <p class="text-center text-gray-600 mb-12">Confirm product details before purchase.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-clipboard-check text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Review your order before proceeding.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="delivery-info-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Delivery Information</h2>
+            <p class="text-center text-gray-600 mb-12">Collect delivery notes and show shipping details.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-map-marker-alt text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Provide your delivery details.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="escrow-protection-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Escrow Protection</h2>
+            <p class="text-center text-gray-600 mb-12">Explains how escrow works.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-lock text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Learn about our secure escrow service.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="order-summary-payment-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Order Summary & Payment</h2>
+            <p class="text-center text-gray-600 mb-12">Order summary, delivery notes, and payment options.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-credit-card text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Complete your purchase securely.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="wallet-connecting-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Wallet Connecting</h2>
+            <p class="text-center text-gray-600 mb-12">Simulates wallet connection status.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-wallet text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Connecting to your digital wallet...</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="payment-successful-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Payment Successful</h2>
+            <p class="text-center text-gray-600 mb-12">Confirms successful payment.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-check-circle text-green-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Your payment has been successfully processed!</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="payment-confirmed-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Payment Confirmed</h2>
+            <p class="text-center text-gray-600 mb-12">Payment confirmed and waits for shipping.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-hourglass-half text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Payment confirmed. Awaiting property shipment.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="item-shipped-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Item Shipped</h2>
+            <p class="text-center text-gray-600 mb-12">Indicates the item has been shipped.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-shipping-fast text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Your property documents are on their way!</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+        <!-- Placeholder Screens for Navigation -->
+        <section id="explore-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Explore Properties</h2>
+            <p class="text-center text-gray-600 mb-12">Discover new listings and investment opportunities.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-compass text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">A world of properties awaits your discovery.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="browse-house-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Browse Houses</h2>
+            <p class="text-center text-gray-600 mb-12">Find your perfect home from our extensive listings.</p>
+            <div id="browse-property-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Properties will be injected here by JavaScript -->
+            </div>
+            <button class="mt-8 bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md w-full" onclick="showScreen('home-screen', this)">Back to Home</button>
+        </section>
+        <section id="sell-house-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Sell Your House</h2>
+            <p class="text-center text-gray-600 mb-12">List your property with us and reach a wide audience.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-hand-holding-usd text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Ready to sell? We make the process simple and effective.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="leaderboard-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Leaderboard</h2>
+            <p class="text-center text-gray-600 mb-12">See top agents and sellers.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-trophy text-yellow-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Check out the top performers in our marketplace.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="notifications-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Notifications</h2>
+            <p class="text-center text-gray-600 mb-12">Your latest alerts and updates.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-bell text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Stay updated with new listings, messages, and more.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="settings-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Settings</h2>
+            <p class="text-center text-gray-600 mb-12">Manage your account preferences.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-cog text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Customize your app experience.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="personal-info-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Personal Information</h2>
+            <p class="text-center text-gray-600 mb-12">View and edit your personal details.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-id-card text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Manage your contact and personal details.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="payment-methods-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Payment Methods</h2>
+            <p class="text-center text-gray-600 mb-12">Manage your payment options.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-credit-card text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Add or manage your payment methods.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="notification-preferences-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Notification Preferences</h2>
+            <p class="text-center text-gray-600 mb-12">Customize your notification settings.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-bell text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Control how you receive alerts from us.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="privacy-security-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Privacy & Security</h2>
+            <p class="text-center text-gray-600 mb-12">Review and update your privacy and security settings.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-shield-alt text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Your data's safety is our priority.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="help-faq-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Help & FAQ</h2>
+            <p class="text-center text-gray-600 mb-12">Find answers to common questions and get support.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-question-circle text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Find answers or contact support.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="search-results-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Search Results</h2>
+            <p class="text-center text-gray-600 mb-12">Your search results will appear here.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-search text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Properties matching your criteria will be displayed.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+        <section id="chat-screen" class="screen p-8 pt-24 min-h-screen bg-gray-50">
+            <h2 class="text-4xl font-bold text-center mb-8 text-gray-900">Chat</h2>
+            <p class="text-center text-gray-600 mb-12">Chat with agents or other users.</p>
+            <div class="bg-white p-8 rounded-xl shadow-lg max-w-3xl mx-auto text-center">
+                <i class="fas fa-comments text-blue-500 text-6xl mb-6"></i>
+                <p class="text-xl text-gray-700 mb-8">Connect instantly with our team or other users.</p>
+                <button class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md" onclick="showScreen('home-screen', this)">Back to Home</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16 px-4 sm:px-6">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-12">
+            <!-- Company Info -->
+            <div class="col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+                <h3 class="text-3xl font-extrabold mb-6 text-blue-400">Emmy Estate</h3>
+                <p class="text-gray-400 text-base leading-relaxed mb-6 max-w-xs">Your trusted partner in finding and selling properties worldwide. We connect dreams with addresses.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 transform hover:scale-125"><i class="fab fa-facebook-f text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 transform hover:scale-125"><i class="fab fa-twitter text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 transform hover:scale-125"><i class="fab fa-instagram text-2xl"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 transform hover:scale-125"><i class="fab fa-linkedin-in text-2xl"></i></a>
+                </div>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+                <h3 class="text-xl font-bold mb-6 text-white">Company</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">Careers</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">Our Team</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">Blog</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+                <h3 class="text-xl font-bold mb-6 text-white">Support</h3>
+                <ul class="space-y-3">
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">FAQ</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">Help Center</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">Privacy Policy</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-blue-400 transition-colors duration-200 text-base">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <!-- Download Links -->
+            <div class="col-span-1 flex flex-col items-center md:items-start text-center md:text-left">
+                <h3 class="text-xl font-bold mb-6 text-white">Download Our App</h3>
+                <div class="flex flex-col space-y-5">
+                    <a href="#" class="flex items-center bg-gray-800 px-6 py-4 rounded-xl hover:bg-gray-700 transition-colors duration-200 shadow-lg transform hover:-translate-y-1">
+                        <i class="fab fa-apple text-4xl mr-4 text-white"></i>
+                        <div>
+                            <p class="text-sm text-gray-300">Download on the</p>
+                            <p class="text-xl font-semibold">App Store</p>
+                        </div>
+                    </a>
+                    <a href="#" class="flex items-center bg-gray-800 px-6 py-4 rounded-xl hover:bg-gray-700 transition-colors duration-200 shadow-lg transform hover:-translate-y-1">
+                        <i class="fab fa-google-play text-4xl mr-4 text-white"></i>
+                        <div>
+                            <p class="text-sm text-gray-300">Get it on</p>
+                            <p class="text-xl font-semibold">Google Play</p>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>
-
-        <div class="about">
-            <h4>Company</h4>
-            <p><a href="#">About</a></p>
-            <p><a href="#">Contact</a></p>
-            <p><a href="#">Career</a></p>
-            <p><a href="#">Blog</a></p>
+        <div class="text-center text-gray-500 text-sm mt-16 border-t border-gray-700 pt-8">
+            &copy; 2025 Emmy Estate. All rights reserved.
         </div>
-
-        <div class="about">
-            <h4>Support</h4>
-            <p><a href="#">Help Center</a></p>
-            <p><a href="#">Support</a></p>
-            <p><a href="#">Management</a></p>
-            <p><a href="#">Privacy & Policy</a></p>
-        </div>
-
-        <div class="about">
-            <h4>About</h4>
-            <p><a href="#">Privacy & Policy</a></p>
-            <p><a href="#">Terms & Conditions</a></p>
-            <p><a href="#">For Businesses</a></p>
-            <p><a href="#">Support</a></p>
-        </div>
-
-        <div class="store">
-            <a href="https://www.apple.com/app-store/" target="_blank"><img src="https://i.postimg.cc/C1TVv5j1/app-store.png" alt="App Store"></a>
-            <a href="https://play.google.com/store" target="_blank"><img src="https://i.postimg.cc/763rj4VN/playstore.png" alt="Play Store"></a>
-        </div>
-
     </footer>
 
-    <div id="propertyDetailModal" class="modal">
-        <div class="modal-content">
-            <button class="modal-close-btn">&times;</button>
-            <div class="modal-details">
-                <div class="main-image-container">
-                    <img id="modalMainImage" src="" alt="Main Property Image">
-                </div>
-                <div class="modal-info">
-                    <h2 id="modalPropertyTitle"></h2>
-                    <p class="price" id="modalPropertyPrice"></p>
-                    <div class="property-specs">
-                        <div><img src="https://i.postimg.cc/fLGc1jJX/bed.png" alt="Bed Icon"><span id="modalPropertyBedrooms"></span> Bedrooms</div>
-                        <div><img src="https://i.postimg.cc/Bvt26wFH/bath.png" alt="Bath Icon"><span id="modalPropertyBathrooms"></span> Bathrooms</div>
-                        <div><img src="https://i.postimg.cc/Wp0ghZdW/kitchen.png" alt="Kitchen Icon"><span id="modalPropertyKitchens"></span> Kitchen</div>
-                        <div><img src="https://i.postimg.cc/MGcjxfkY/area.png" alt="Area Icon"><span id="modalPropertyArea"></span> Sq. Fit</div>
-                        <div><img src="https://i.postimg.cc/CL1hWTpG/like.png" alt="Likes Icon"><span id="modalPropertyLikes"></span> Likes</div>
-                        <div><img src="https://i.postimg.cc/vBhyNXP2/share.png" alt="Share Icon"><span id="modalPropertyShares"></span> Shares</div>
-                    </div>
-                    <p class="description" id="modalPropertyDescription"></p>
-                    <div class="modal-sub-images" id="modalSubImagesContainer">
-                        </div>
-                    <button class="modal-contact-btn" data-property-id="">Contact Agent</button> <!-- Added data-property-id attribute -->
-                </div>
+    <!-- Property Detail Modal -->
+    <div id="property-modal-overlay" class="custom-modal-overlay">
+        <div class="custom-modal-content">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl" id="close-modal">&times;</button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Custom Message/Confirmation Modal -->
+    <div id="custom-message-modal-overlay" class="custom-modal-overlay">
+        <div class="custom-modal-content max-w-md text-center">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl" id="close-message-modal">&times;</button>
+            <h3 id="custom-message-title" class="text-2xl font-bold mb-4 text-gray-900"></h3>
+            <p id="custom-message-text" class="text-lg text-gray-700 mb-8"></p>
+            <div id="custom-message-buttons" class="flex justify-center space-x-4">
+                <button id="custom-message-confirm-btn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors duration-200 shadow-md">OK</button>
+                <button id="custom-message-cancel-btn" class="bg-gray-300 text-gray-800 px-6 py-2 rounded-lg hover:bg-gray-400 transition-colors duration-200 shadow-md" style="display: none;">Cancel</button>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- DOM Elements ---
-            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-            const mainNavBar = document.getElementById('mainNavBar');
-            const mainLoginButtons = document.getElementById('mainLoginButtons');
+        // --- Mock Data ---
+        let allProperties = []; // Declare globally to be accessible for modifications
 
-            const loginBtn = document.getElementById('loginBtn');
-            const createAccountBtn = document.getElementById('createAccountBtn');
-            const exploreMoreBtn = document.getElementById('exploreMoreBtn');
-            const ownerSubscribeForm = document.getElementById('ownerSubscribeForm');
-            const ownerEmailInput = document.getElementById('ownerEmailInput');
-            const ownerSubmitBtn = document.getElementById('ownerSubmitBtn');
+        function initializeMockData() {
+            let properties = JSON.parse(localStorage.getItem('properties'));
 
-            // Removed propertyFilterType as the dropdown is removed
-            const trendingPropertiesGrid = document.getElementById('trendingPropertiesGrid');
-
-            const propertyDetailModal = document.getElementById('propertyDetailModal');
-            const modalCloseBtn = propertyDetailModal.querySelector('.modal-close-btn');
-            const modalMainImage = document.getElementById('modalMainImage');
-            const modalPropertyTitle = document.getElementById('modalPropertyTitle');
-            const modalPropertyPrice = document.getElementById('modalPropertyPrice');
-            const modalPropertyBedrooms = document.getElementById('modalPropertyBedrooms');
-            const modalPropertyBathrooms = document.getElementById('modalPropertyBathrooms');
-            const modalPropertyKitchens = document.getElementById('modalPropertyKitchens');
-            const modalPropertyArea = document.getElementById('modalPropertyArea');
-            const modalPropertyLikes = document.getElementById('modalPropertyLikes');
-            const modalPropertyShares = document.getElementById('modalPropertyShares');
-            const modalPropertyDescription = document.getElementById('modalPropertyDescription');
-            const modalSubImagesContainer = document.getElementById('modalSubImagesContainer');
-            const modalContactBtn = propertyDetailModal.querySelector('.modal-contact-btn');
-
-
-            // --- Mock Property Data (Stored in localStorage for persistence) ---
-            const PROPERTY_DATA_KEY = 'realEstateProperties';
-
-            function getProperties() {
-                let properties = JSON.parse(localStorage.getItem(PROPERTY_DATA_KEY) || '[]');
-                // Ensure the mock data is always consistent. If it's not exactly 14 properties, re-initialize.
-                if (properties.length !== 14) {
-                    console.log('Re-initializing property data in localStorage.');
-                    properties = [
-                        {
-                            id: 'prop1',
-                            title: 'Contemporary Architectural Style House',
-                            type: 'Duplex House',
-                            location: 'London, UK',
-                            price: 321000,
-                            bedrooms: 3,
-                            bathrooms: 3,
-                            kitchens: 1,
-                            area: 1000,
-                            description: 'A stunning contemporary duplex house with an open-plan living area, high ceilings, and large windows. Features include a modern kitchen, spacious bedrooms, and a private garden. Perfect for a family looking for a stylish and comfortable home in London.',
-                            mainImage: 'https://i.postimg.cc/4NnLDwL7/card-1.png',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1580582932707-52c142c1ff23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fGZhbWlseSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ1Nw&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 120,
-                            shares: 45,
-                            status: 'Buy'
-                        },
-                        {
-                            id: 'prop2',
-                            title: 'Minimalist Contemporary Architectural Style House',
-                            type: 'Duplex House',
-                            location: 'Manchester, UK',
-                            price: 360000,
+            // Check if data exists and if its structure/count is as expected
+            // Or if it's the very first load, populate with initial data
+            if (!properties || properties.length === 0 || properties[0].currency !== '$') {
+                console.log('Initializing mock data or refreshing due to structure change...');
+                properties = [
+                    {
+                        id: 1,
+                        image: 'https://placehold.co/600x400/ADD8E6/000000?text=Modern+Home+1',
+                        subImages: [
+                            'https://placehold.co/600x400/ADD8E6/000000?text=Modern+Home+1+Interior',
+                            'https://placehold.co/600x400/ADD8E6/000000?text=Modern+Home+1+Kitchen',
+                            'https://placehold.co/600x400/ADD8E6/000000?text=Modern+Home+1+Bedroom'
+                        ],
+                        title: 'Spacious Family Villa',
+                        price: { amount: 550000, currency: '$' },
+                        location: 'California, USA',
+                        details: {
                             bedrooms: 4,
                             bathrooms: 3,
-                            kitchens: 1,
-                            area: 1150,
-                            description: 'A beautifully designed minimalist duplex house offering spacious living and modern comforts. Features include a sleek kitchen, ample natural light, and a serene backyard. Ideal for those seeking a blend of style and functionality.',
-                            mainImage: 'https://i.postimg.cc/L50pH5Fz/card-2.png',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 98,
-                            shares: 30,
-                            status: 'Buy'
+                            kitchen: 1,
+                            area: '2500 sqft'
                         },
-                        {
-                            id: 'prop3',
-                            title: 'Mediterranean Colonial Style House',
-                            type: 'Triplex House',
-                            location: 'Oxford, UK',
-                            price: 310000,
-                            bedrooms: 4,
-                            bathrooms: 4,
-                            kitchens: 1,
-                            area: 1300,
-                            description: 'Charming Mediterranean Colonial style triplex house with classic architecture and modern interiors. Features include multiple living areas, a gourmet kitchen, and a beautiful patio. Located in a quiet, family-friendly neighborhood.',
-                            mainImage: 'https://i.postimg.cc/52BRgyKn/card-3.png',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 150,
-                            shares: 60,
-                            status: 'Buy'
-                        },
-                        {
-                            id: 'prop4',
-                            title: 'Mid-century Modern Residential Style House',
-                            type: 'Duplex House',
-                            location: 'London, UK',
-                            price: 495000,
+                        description: 'A beautiful and spacious villa located in a serene neighborhood, perfect for a growing family. Features include a large backyard, modern kitchen, and smart home technology. Enjoy the tranquility of suburban living with easy access to city amenities.',
+                        likes: 120,
+                        shares: 50
+                    },
+                    {
+                        id: 2,
+                        image: 'https://placehold.co/600x400/90EE90/000000?text=Lagos+Duplex+2',
+                        subImages: [
+                            'https://placehold.co/600x400/90EE90/000000?text=Lagos+Duplex+2+Living',
+                            'https://placehold.co/600x400/90EE90/000000?text=Lagos+Duplex+2+Balcony',
+                            'https://placehold.co/600x400/90EE90/000000?text=Lagos+Duplex+2+Pool'
+                        ],
+                        title: 'Luxury Lagos Island Duplex',
+                        price: { amount: 400000, currency: '$' },
+                        location: 'Lagos, Nigeria',
+                        details: {
                             bedrooms: 5,
                             bathrooms: 4,
-                            kitchens: 1,
-                            area: 1600,
-                            description: 'An exquisite mid-century modern duplex house, blending classic design with contemporary living. Features expansive windows, open spaces, and a connection to nature. Ideal for those who appreciate unique architectural styles.',
-                            mainImage: 'https://i.postimg.cc/g2gBQQdZ/card-4.png',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 200,
-                            shares: 75,
-                            status: 'Buy'
+                            kitchen: 2,
+                            area: '3200 sqft'
                         },
-                        {
-                            id: 'prop5',
-                            title: 'Spacious Apartment for Rent',
-                            type: 'Apartment',
-                            location: 'Lagos, Nigeria',
-                            price: 2500000, // Naira
+                        description: 'Experience unparalleled luxury in this exquisite duplex with stunning views of the Lagos Lagoon. Boasts state-of-the-art amenities, a private pool, and spacious living areas. Ideal for those seeking an opulent lifestyle in the heart of the city.',
+                        likes: 250,
+                        shares: 80
+                    },
+                    {
+                        id: 3,
+                        image: 'https://placehold.co/600x400/FFB6C1/000000?text=London+Flat+3',
+                        subImages: [
+                            'https://placehold.co/600x400/FFB6C1/000000?text=London+Flat+3+View',
+                            'https://placehold.co/600x400/FFB6C1/000000?text=London+Flat+3+Bedroom',
+                            'https://placehold.co/600x400/FFB6C1/000000?text=London+Flat+3+Bath'
+                        ],
+                        title: 'Charming Central London Flat',
+                        price: { amount: 1100000, currency: '$' },
+                        location: 'London, UK',
+                        details: {
+                            bedrooms: 2,
+                            bathrooms: 2,
+                            kitchen: 1,
+                            area: '1200 sqft'
+                        },
+                        description: 'A charming flat in the heart of London, offering easy access to city landmarks and vibrant cultural spots. Ideal for professionals or small families looking for a prime urban residence.',
+                        likes: 90,
+                        shares: 30
+                    },
+                    {
+                        id: 4,
+                        image: 'https://placehold.co/600x400/DDA0DD/000000?text=Dubai+Penthouse+4',
+                        subImages: [
+                            'https://placehold.co/600x400/DDA0DD/000000?text=Dubai+Penthouse+4+Terrace',
+                            'https://placehold.co/600x400/DDA0DD/000000?text=Dubai+Penthouse+4+Living',
+                            'https://placehold.co/600x400/DDA0DD/000000?text=Dubai+Penthouse+4+Pool'
+                        ],
+                        title: 'Panoramic Dubai Penthouse',
+                        price: { amount: 3200000, currency: '$' },
+                        location: 'Dubai, UAE',
+                        details: {
+                            bedrooms: 3,
+                            bathrooms: 4,
+                            kitchen: 1,
+                            area: '4000 sqft'
+                        },
+                        description: 'Indulge in luxury with this stunning penthouse offering panoramic views of the Dubai skyline. Features expansive living spaces, private terrace, and access to exclusive amenities. A true gem for discerning buyers.',
+                        likes: 300,
+                        shares: 100
+                    },
+                    {
+                        id: 5,
+                        image: 'https://placehold.co/600x400/B0E0E6/000000?text=Sydney+Apartment+5',
+                        subImages: [
+                            'https://placehold.co/600x400/B0E0E6/000000?text=Sydney+Apartment+5+Harbour',
+                            'https://placehold.co/600x400/B0E0E6/000000?text=Sydney+Apartment+5+Kitchen',
+                            'https://placehold.co/600x400/B0E0E6/000000?text=Sydney+Apartment+5+Balcony'
+                        ],
+                        title: 'Waterfront Sydney Apartment',
+                        price: { amount: 1800000, currency: '$' },
+                        location: 'Sydney, Australia',
+                        details: {
                             bedrooms: 3,
                             bathrooms: 2,
-                            kitchens: 1,
-                            area: 1500,
-                            description: 'A spacious 3-bedroom apartment available for rent in a prime area of Lagos. Features include ample living space, modern kitchen, and proximity to essential services. Ideal for families or professionals.',
-                            mainImage: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 80,
-                            shares: 25,
-                            status: 'Rent'
+                            kitchen: 1,
+                            area: '1800 sqft'
                         },
-                        {
-                            id: 'prop6',
-                            title: 'Luxury Villa for Rent',
-                            type: 'House',
-                            location: 'Accra, Ghana',
-                            price: 50000, // USD equivalent for simplicity, or adjust to GHS
-                            bedrooms: 4,
-                            bathrooms: 4,
-                            kitchens: 2,
-                            area: 4000,
-                            description: 'Exquisite luxury villa available for rent in a prestigious Accra neighborhood. Boasts high-end finishes, a private pool, and lush gardens. Perfect for diplomatic staff or high-net-worth individuals.',
-                            mainImage: 'https://images.unsplash.com/photo-1580582932707-52c142c1ff23?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fGZhbWlseSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ1Nw&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 110,
-                            shares: 40,
-                            status: 'Rent'
-                        },
-                        // --- New Listings Below ---
-                        {
-                            id: 'prop7',
-                            title: 'Modern Duplex in Ikoyi',
-                            type: 'Duplex House',
-                            location: 'Ikoyi, Lagos',
-                            price: 280000000, // Naira
-                            bedrooms: 6,
-                            bathrooms: 5,
-                            kitchens: 2,
-                            area: 4500,
-                            description: 'An ultra-modern 6-bedroom duplex in the heart of Ikoyi, Lagos. Boasts state-of-the-art smart home features, a private cinema, and a rooftop terrace with city views. Exclusive living at its finest.',
-                            mainImage: 'https://images.unsplash.com/photo-1598228723793-d1445722129a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIwfHxob21lJTIwZXh0ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1564013799907-f0101dce12bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE3fHxob21lJTIwZXh0ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1568605117036-ba68f993cd95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE4fHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1513584684374-8bbb752f230d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIyfHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 300,
-                            shares: 120,
-                            status: 'Buy'
-                        },
-                        {
-                            id: 'prop8',
-                            title: 'Charming Studio Apartment',
-                            type: 'Apartment',
-                            location: 'Central London',
-                            price: 1800, // GBP per month
-                            bedrooms: 0,
-                            bathrooms: 1,
-                            kitchens: 1,
-                            area: 400,
-                            description: 'A cozy and efficient studio apartment in the heart of Central London. Perfect for students or single professionals. Excellent transport links and close to major attractions.',
-                            mainImage: 'https://images.unsplash.com/photo-1540518614376-b853a5742874?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDI1fHxhcGFydGbtlMENTlMjBpbnRlcmlvcnxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1522708323590-d24dbb6b0b67?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDI4fHxhcGFydGbtlMENTlMjBpbnRlcmlvcnxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1556912172-45b7cdc50672?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDMwfHxhcGFydGbtlMENTlMjBraXRjaGVufGVufDB8fHx8MTcwNTY0NzY2NHww&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 70,
-                            shares: 15,
-                            status: 'Rent'
-                        },
-                        {
-                            id: 'prop9',
-                            title: 'Large Office Building',
-                            type: 'Commercial',
-                            location: 'Manchester City Centre',
-                            price: 1200000000, // GBP
-                            bedrooms: 0,
-                            bathrooms: 20, // Many bathrooms for commercial
-                            kitchens: 5, // Multiple kitchenettes
-                            area: 50000,
-                            description: 'A prime commercial office building spanning multiple floors in Manchester City Centre. Ideal for large corporations or as an investment property. High rental yield potential.',
-                            mainImage: 'https://images.unsplash.com/photo-1523217582562-09d2bd2f9430?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDM1fHxjb21tZXJjaWFsJTIwYnVpbGRpbmd8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1504384764586-bb4be8f53b5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDQwfHxjb21tZXJjaWFsJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1504384764586-bb4be8f53b5d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDQwfHxjb21tZXJjaWFsJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 50,
-                            shares: 10,
-                            status: 'Buy'
-                        },
-                        {
-                            id: 'prop10',
-                            title: 'Cozy Terraced House',
-                            type: 'House',
-                            location: 'Headington, Oxford',
-                            price: 280000,
-                            bedrooms: 3,
-                            bathrooms: 2,
-                            kitchens: 1,
-                            area: 900,
-                            description: 'A charming terraced house in the popular Headington area of Oxford. Features a compact garden, two reception rooms, and easy access to local amenities and hospitals. Ideal for small families or as a rental investment.',
-                            mainImage: 'https://images.unsplash.com/photo-1582268611958-abfd65e27fe9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDQ1fHxob3VzZSUyMGV4dGVyaW9yfGVufDB8fHx8MTcwNTY0NzY2NHww&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1568605117036-ba68f993cd95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE4fHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1513584684374-8bbb752f230d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIyfHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 180,
-                            shares: 55,
-                            status: 'Buy'
-                        },
-                        {
-                            id: 'prop11',
-                            title: 'Beachfront Plot',
-                            type: 'Land',
-                            location: 'Tema, Ghana',
-                            price: 80000, // USD equivalent
-                            bedrooms: 0,
-                            bathrooms: 0,
-                            kitchens: 0,
-                            area: 8000,
-                            description: 'A rare opportunity to acquire a beautiful beachfront plot in Tema, Ghana. Perfect for building a luxury holiday home or a boutique resort. Enjoy stunning ocean views and direct beach access.',
-                            mainImage: 'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDUwfHxiZWFjaGZyb250JTIwbGFuZHxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDUwfHxiZWFjaGZyb250JTIwbGFuZHxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDUwfHxiZWFjaGZyb250JTIwbGFuZHxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 60,
-                            shares: 10,
-                            status: 'Buy'
-                        },
-                        {
-                            id: 'prop12',
-                            title: 'Family Home for Rent',
-                            type: 'House',
-                            location: 'Victoria Island, Lagos',
-                            price: 8000000, // Naira per year
-                            bedrooms: 4,
-                            bathrooms: 3,
-                            kitchens: 1,
-                            area: 2800,
-                            description: 'A comfortable and spacious 4-bedroom family home available for rent in a secure compound on Victoria Island. Features include a well-maintained garden, ample parking, and proximity to international schools and business districts.',
-                            mainImage: 'https://images.unsplash.com/photo-1564013799907-f0101dce12bc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE3fHxob21lJTIwZXh0ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1568605117036-ba68f993cd95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDE4fHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1513584684374-8bbb752f230d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDIyfHxob21lJTIwaW50ZXJpb3J8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 90,
-                            shares: 35,
-                            status: 'Rent'
-                        },
-                        // New "Sell" properties
-                        {
-                            id: 'prop13',
-                            title: 'Modern Family Home for Sale',
-                            type: 'House',
-                            location: 'Abuja, Nigeria',
-                            price: 150000000, // Naira
-                            bedrooms: 5,
-                            bathrooms: 4,
-                            kitchens: 2,
-                            area: 3500,
-                            description: 'A spacious and modern family home located in a serene part of Abuja. Features include a large living area, en-suite bedrooms, a fitted kitchen, and ample parking. Ideal for a growing family.',
-                            mainImage: 'https://images.unsplash.com/photo-1570129476814-de975619375e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDN8fGx1eHVyeSUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ0OA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDEwfHxpbnRlcmlvciUyMGhvdXNlfGVufDB8fHx8MTY3MDcxMjQ2MQ&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNTY3MHwwfDF8c2VhcmNofDR8fG1vZGVybiUyMGFwYXJ0bWVudHxlbnwwfHx8fDE2NzA3MTI0NTA&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 250,
-                            shares: 80,
-                            status: 'Sell'
-                        },
-                        {
-                            id: 'prop14',
-                            title: 'Luxury Penthouse for Sale',
-                            type: 'Apartment',
-                            location: 'Lekki, Lagos',
-                            price: 450000000, // Naira
-                            bedrooms: 4,
-                            bathrooms: 5,
-                            kitchens: 1,
-                            area: 2200,
-                            description: 'An exquisite luxury penthouse offering panoramic views of Lekki. Features include high-end finishes, smart home automation, a private elevator, and access to exclusive amenities. Perfect for discerning buyers.',
-                            mainImage: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDYwfHxwZW50aG91c2V8ZW58MHx8fHwxNzA1NjQ3NjY0fDA&ixlib=rb-4.0.3&q=80&w=1080',
-                            subImages: [
-                                'https://images.unsplash.com/photo-1554995207-c18c696d3cd0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDY1fHxpbnRlcmlvciUyMGRlc2lnbnxlbnwwfHx8fDE3MDU2NDc2NjR8MA&ixlib=rb-4.0.3&q=80&w=1080',
-                                'https://images.unsplash.com/photo-1505691935518-a664e1e0a29f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wzNTY3MHwwfDF8c2VhcmNofDY5fHxsYXZpc2glMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTcwNTY0NzY2NHww&ixlib=rb-4.0.3&q=80&w=1080'
-                            ],
-                            likes: 350,
-                            shares: 150,
-                            status: 'Sell'
-                        }
-                    ];
-                    localStorage.setItem(PROPERTY_DATA_KEY, JSON.stringify(properties));
-                } else {
-                    console.log('Loading property data from localStorage.');
+                        description: 'Enjoy breathtaking waterfront views from this modern apartment in Sydney. Perfect for those seeking a vibrant lifestyle with easy access to city attractions and beaches. A rare opportunity to own a piece of paradise.',
+                        likes: 180,
+                        shares: 65
+                    }
+                ];
+                localStorage.setItem('properties', JSON.stringify(properties));
+            }
+            return properties;
+        }
+
+        allProperties = initializeMockData(); // Assign to the global variable
+        console.log('Mock property data loaded:', allProperties);
+
+        // --- Screen Management Logic ---
+        const screens = document.querySelectorAll('.screen');
+        const mainHeader = document.getElementById('main-header'); // Get the header element
+
+        function showScreen(id, clickedElement = null) {
+            // Hide all screens
+            screens.forEach(screen => {
+                screen.classList.remove('active');
+            });
+
+            // Show the requested screen
+            const targetScreen = document.getElementById(id);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+                console.log(`Switched to screen: ${id}`);
+
+                // Specific actions for certain screens
+                if (id === 'home-screen') {
+                    animateHeroSection();
+                    renderProperties('property-grid', allProperties); // Re-render home properties
+                } else if (id === 'browse-house-screen') {
+                    renderProperties('browse-property-grid', allProperties); // Render all properties for browse
+                } else if (id === 'manage-listings-screen') {
+                    renderManageListings(); // Render properties for management
+                } else if (id === 'post-new-house-screen') {
+                    document.getElementById('post-property-form').reset(); // Clear form on entry
+                    // Hide all image previews when resetting the form
+                    document.getElementById('property-image-preview').style.display = 'none';
+                    document.getElementById('property-subimage1-preview').style.display = 'none';
+                    document.getElementById('property-subimage2-preview').style.display = 'none';
+                    document.getElementById('property-subimage3-preview').style.display = 'none';
                 }
-                return properties;
             }
 
-            // --- Render Trending Properties ---
-            // Removed filterStatus parameter as we want to show all properties
-            function renderTrendingProperties() {
-                trendingPropertiesGrid.innerHTML = ''; // Clear existing properties
-                const allProperties = getProperties();
-                // No filtering needed, display all properties
-                const propertiesToDisplay = allProperties;
+            // Update active link styling for desktop navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            if (clickedElement && clickedElement.classList.contains('nav-link')) {
+                clickedElement.classList.add('active-link');
+            } else {
+                const currentNavLink = document.querySelector(`.nav-link[onclick*="${id}"]`);
+                if (currentNavLink) currentNavLink.classList.add('active-link');
+            }
 
-                console.log(`Attempting to render ${propertiesToDisplay.length} properties.`); // Added log
-                if (propertiesToDisplay.length === 0) {
-                    trendingPropertiesGrid.innerHTML = '<p style="text-align: center; color: var(--navbar-color); margin-top: 2rem;">No properties found.</p>';
-                    console.log('No properties to display.'); // Added log
+            // Update active link styling for mobile navigation
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.classList.remove('active-link');
+            });
+            if (clickedElement && clickedElement.classList.contains('mobile-nav-link')) {
+                clickedElement.classList.add('active-link');
+            } else {
+                const currentMobileNavLink = document.querySelector(`.mobile-nav-link[onclick*="${id}"]`);
+                if (currentMobileNavLink) currentMobileNavLink.classList.add('active-link');
+            }
+        }
+
+        // Function to animate hero section elements
+        function animateHeroSection() {
+            const heroImage = document.querySelector('.hero-image-animate');
+            const heroTexts = document.querySelectorAll('.hero-text-animate');
+            const heroButtons = document.querySelectorAll('.hero-button-animate');
+
+            // Reset animations by removing and re-adding classes
+            const elementsToAnimate = [heroImage, ...heroTexts, ...heroButtons];
+            elementsToAnimate.forEach(el => {
+                if (el) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.classList.remove('animate-in'); // Remove a potential previous animation class
+                }
+            });
+
+            // Trigger reflow to ensure animations restart
+            void heroImage.offsetWidth; // Force reflow
+
+            // Apply animations with delays
+            if (heroImage) {
+                heroImage.style.opacity = '1';
+                heroImage.style.transform = 'translateY(0)';
+            }
+
+            heroTexts.forEach((el, index) => {
+                if (el) {
+                    el.style.transitionDelay = `${0.3 + index * 0.2}s`;
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+
+            heroButtons.forEach((el, index) => {
+                if (el) {
+                    el.style.transitionDelay = `${0.7 + index * 0.2}s`;
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+
+        // Add scroll event listener to header for shadow effect
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 0) {
+                mainHeader.classList.add('header-scrolled');
+            } else {
+                mainHeader.classList.remove('header-scrolled');
+            }
+        });
+
+        // Initial screen display after splash
+        window.onload = () => {
+            const splashScreen = document.getElementById('splash-screen');
+            setTimeout(() => {
+                splashScreen.style.opacity = '0';
+                splashScreen.style.visibility = 'hidden';
+                setTimeout(() => {
+                    splashScreen.style.display = 'none';
+                    showScreen('home-screen'); // Show home screen after splash
+                }, 700); // Allow opacity transition to complete
+            }, 2500); // Splash screen visible for 2.5 seconds
+        };
+
+        // --- Mobile Sidebar Logic ---
+        const hamburgerMenu = document.getElementById('hamburger-menu');
+        const mobileSidebar = document.getElementById('mobile-sidebar');
+        const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+
+        function toggleMobileSidebar() {
+            mobileSidebar.classList.toggle('open');
+            mobileSidebarOverlay.classList.toggle('open');
+            mobileSidebarOverlay.classList.toggle('hidden'); // Toggle hidden for overlay
+        }
+
+        hamburgerMenu.addEventListener('click', toggleMobileSidebar);
+        // Close button within sidebar already has onclick="toggleMobileSidebar()"
+        // Overlay click also closes sidebar
+        mobileSidebarOverlay.addEventListener('click', toggleMobileSidebar);
+
+        // --- Dynamic Property Card Generation (for home and browse) ---
+        function renderProperties(targetGridId, propertiesToRender) {
+            const targetGrid = document.getElementById(targetGridId);
+            if (!targetGrid) {
+                console.error(`Target grid with ID '${targetGridId}' not found.`);
+                return;
+            }
+            targetGrid.innerHTML = ''; // Clear existing cards
+
+            if (propertiesToRender.length === 0) {
+                // Display a message if no properties
+                const noListingsMessage = document.createElement('p');
+                noListingsMessage.className = 'text-center text-gray-500 text-xl py-10 col-span-full';
+                noListingsMessage.textContent = 'No properties available yet.';
+                targetGrid.appendChild(noListingsMessage);
+                return;
+            }
+
+            propertiesToRender.forEach(property => {
+                const propertyCard = document.createElement('div');
+                propertyCard.className = 'bg-white rounded-2xl shadow-xl overflow-hidden transform hover:scale-[1.02] transition-transform duration-300 ease-in-out border-b-4 border-blue-200 hover:border-blue-500';
+                propertyCard.innerHTML = `
+                    <img src="${property.image}" alt="${property.title}" class="w-full h-56 object-cover object-center">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 text-gray-900">${property.title}</h3>
+                        <p class="text-blue-700 font-extrabold mb-4 text-3xl">${property.price.currency}${property.price.amount.toLocaleString()}</p>
+                        <div class="flex flex-wrap items-center space-x-5 text-gray-600 text-base mb-5">
+                            <span class="flex items-center mb-1"><i class="fas fa-bed mr-2 text-blue-500"></i>${property.details.bedrooms} Beds</span>
+                            <span class="flex items-center mb-1"><i class="fas fa-bath mr-2 text-blue-500"></i>${property.details.bathrooms} Baths</span>
+                            <span class="flex items-center mb-1"><i class="fas fa-kitchen-set mr-2 text-blue-500"></i>${property.details.kitchen} Kitchen</span>
+                            <span class="flex items-center mb-1"><i class="fas fa-ruler-combined mr-2 text-blue-500"></i>${property.details.area}</span>
+                        </div>
+                        <div class="flex justify-between items-center mt-6">
+                            <button class="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition-colors duration-200 view-details-btn shadow-lg text-lg font-semibold" data-id="${property.id}">View Details</button>
+                            <div class="flex space-x-5 text-gray-400">
+                                <i class="fas fa-heart text-2xl hover:text-red-500 cursor-pointer transition-colors duration-200 transform hover:scale-125"></i>
+                                <i class="fas fa-share-nodes text-2xl hover:text-blue-500 cursor-pointer transition-colors duration-200 transform hover:scale-125"></i>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                targetGrid.appendChild(propertyCard);
+            });
+        }
+
+        // --- Property Detail Modal Logic ---
+        const propertyModalOverlay = document.getElementById('property-modal-overlay');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('view-details-btn')) {
+                const propertyId = e.target.dataset.id;
+                const property = allProperties.find(p => p.id == propertyId);
+                if (property) {
+                    displayPropertyModal(property);
+                }
+            }
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            propertyModalOverlay.classList.remove('show');
+        });
+
+        // Close modal if clicking outside the content
+        propertyModalOverlay.addEventListener('click', (e) => {
+            if (e.target === propertyModalOverlay) {
+                propertyModalOverlay.classList.remove('show');
+            }
+        });
+
+        function displayPropertyModal(property) {
+            modalContent.innerHTML = `
+                <div class="md:flex">
+                    <div class="md:w-1/2 pr-0 md:pr-6">
+                        <img id="main-modal-image" src="${property.image}" alt="${property.title}" class="w-full h-auto rounded-xl shadow-lg mb-4 object-cover max-h-[400px]">
+                        <div class="flex space-x-3 overflow-x-auto pb-2 justify-center">
+                            ${property.subImages.map((img, index) => `
+                                <img src="${img}" alt="${property.title} thumbnail ${index + 1}" class="w-24 h-24 object-cover rounded-md cursor-pointer border-3 border-transparent hover:border-blue-600 transition-colors duration-200 thumbnail-image shadow-sm" data-src="${img}">
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:pl-8 mt-8 md:mt-0">
+                        <h3 class="text-4xl font-extrabold mb-3 text-gray-900">${property.title}</h3>
+                        <p class="text-blue-700 font-extrabold text-4xl mb-5">${property.price.currency}${property.price.amount.toLocaleString()}</p>
+                        <div class="flex flex-wrap items-center space-x-6 text-gray-700 text-lg mb-6">
+                            <span class="flex items-center mb-1"><i class="fas fa-bed mr-2 text-blue-500"></i>${property.details.bedrooms} Beds</span>
+                            <span class="flex items-center mb-1"><i class="fas fa-bath mr-2 text-blue-500"></i>${property.details.bathrooms} Baths</span>
+                            <span class="flex items-center mb-1"><i class="fas fa-kitchen-set mr-2 text-blue-500"></i>${property.details.kitchen} Kitchen</span>
+                            <span class="flex items-center mb-1"><i class="fas fa-ruler-combined mr-2 text-blue-500"></i>${property.details.area}</span>
+                        </div>
+                        <p class="text-gray-700 mb-8 leading-relaxed text-base">${property.description}</p>
+                        <div class="flex items-center space-x-6 text-gray-600 mb-8">
+                            <span><i class="fas fa-heart text-red-500 mr-2 text-xl"></i>${property.likes} Likes</span>
+                            <span><i class="fas fa-share-nodes text-blue-500 mr-2 text-xl"></i>${property.shares} Shares</span>
+                        </div>
+                        <div class="flex justify-start items-center mt-6">
+                            <button class="bg-green-600 text-white px-8 py-4 rounded-xl font-bold hover:bg-green-700 transition-colors duration-200 contact-agent-btn shadow-lg text-xl" data-title="${property.title}" data-price="${property.price.amount}" data-location="${property.location}">
+                                Contact Agent
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            propertyModalOverlay.classList.add('show');
+
+            // Add event listeners for thumbnail images
+            const thumbnailImages = modalContent.querySelectorAll('.thumbnail-image');
+            const mainModalImage = document.getElementById('main-modal-image');
+            thumbnailImages.forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    mainModalImage.src = thumbnail.dataset.src;
+                });
+            });
+        }
+
+        // --- WhatsApp Contact Logic ---
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('contact-agent-btn')) {
+                const title = e.target.dataset.title;
+                const price = e.target.dataset.price;
+                const location = e.target.dataset.location;
+                const agentPhoneNumber = '+2348012345678'; // Example Nigerian number
+                const message = encodeURIComponent(`Hello, I'm interested in the property "${title}" located in ${location}, priced at $${price}. Could you please provide more details?`);
+                window.open(`https://wa.me/${agentPhoneNumber}?text=${message}`, '_blank');
+            }
+        });
+
+        // --- Custom Message/Confirmation Modal Logic ---
+        const customMessageModalOverlay = document.getElementById('custom-message-modal-overlay');
+        const customMessageTitle = document.getElementById('custom-message-title');
+        const customMessageText = document.getElementById('custom-message-text');
+        const customMessageConfirmBtn = document.getElementById('custom-message-confirm-btn');
+        const customMessageCancelBtn = document.getElementById('custom-message-cancel-btn');
+        const closeMessageModalBtn = document.getElementById('close-message-modal');
+
+        let currentModalCallback = null;
+
+        function showCustomModal(title, message, isConfirm = false, callback = null) {
+            customMessageTitle.textContent = title;
+            customMessageText.textContent = message;
+            currentModalCallback = callback;
+
+            if (isConfirm) {
+                customMessageConfirmBtn.textContent = 'Yes';
+                customMessageCancelBtn.style.display = 'inline-block';
+            } else {
+                customMessageConfirmBtn.textContent = 'OK';
+                customMessageCancelBtn.style.display = 'none';
+            }
+
+            customMessageModalOverlay.classList.add('show');
+        }
+
+        function hideCustomModal() {
+            customMessageModalOverlay.classList.remove('show');
+            currentModalCallback = null; // Clear callback
+        }
+
+        customMessageConfirmBtn.addEventListener('click', () => {
+            if (currentModalCallback) {
+                currentModalCallback(true);
+            }
+            hideCustomModal();
+        });
+
+        customMessageCancelBtn.addEventListener('click', () => {
+            if (currentModalCallback) {
+                currentModalCallback(false);
+            }
+            hideCustomModal();
+        });
+
+        closeMessageModalBtn.addEventListener('click', hideCustomModal);
+        customMessageModalOverlay.addEventListener('click', (e) => {
+            if (e.target === customMessageModalOverlay) {
+                hideCustomModal();
+            }
+        });
+
+
+        // --- Admin Panel Functionality ---
+
+        // Helper function to read file as Base64
+        function readFileAsBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+
+        // Image preview handlers
+        document.getElementById('property-image').addEventListener('change', function() {
+            const preview = document.getElementById('property-image-preview');
+            const file = this.files[0];
+            if (file) {
+                readFileAsBase64(file).then(base64String => {
+                    preview.src = base64String;
+                    preview.style.display = 'block';
+                }).catch(error => console.error("Error reading file:", error));
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        });
+
+        document.getElementById('property-subimage1').addEventListener('change', function() {
+            const preview = document.getElementById('property-subimage1-preview');
+            const file = this.files[0];
+            if (file) {
+                readFileAsBase64(file).then(base64String => {
+                    preview.src = base64String;
+                    preview.style.display = 'block';
+                }).catch(error => console.error("Error reading file:", error));
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        });
+
+        document.getElementById('property-subimage2').addEventListener('change', function() {
+            const preview = document.getElementById('property-subimage2-preview');
+            const file = this.files[0];
+            if (file) {
+                readFileAsBase64(file).then(base64String => {
+                    preview.src = base64String;
+                    preview.style.display = 'block';
+                }).catch(error => console.error("Error reading file:", error));
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        });
+
+        document.getElementById('property-subimage3').addEventListener('change', function() {
+            const preview = document.getElementById('property-subimage3-preview');
+            const file = this.files[0];
+            if (file) {
+                readFileAsBase64(file).then(base64String => {
+                    preview.src = base64String;
+                    preview.style.display = 'block';
+                }).catch(error => console.error("Error reading file:", error));
+            } else {
+                preview.src = '';
+                preview.style.display = 'none';
+            }
+        });
+
+
+        // Post New House Form Submission
+        const postPropertyForm = document.getElementById('post-property-form');
+        if (postPropertyForm) {
+            postPropertyForm.addEventListener('submit', async (e) => { // Added 'async' keyword
+                e.preventDefault();
+
+                const formData = new FormData(postPropertyForm);
+
+                // Read image files as Base64
+                const mainImageFile = document.getElementById('property-image').files[0];
+                const subImage1File = document.getElementById('property-subimage1').files[0];
+                const subImage2File = document.getElementById('property-subimage2').files[0];
+                const subImage3File = document.getElementById('property-subimage3').files[0];
+
+                let mainImageBase64 = '';
+                let subImagesBase64 = [];
+
+                try {
+                    if (mainImageFile) {
+                        mainImageBase64 = await readFileAsBase64(mainImageFile);
+                    }
+                    if (subImage1File) {
+                        subImagesBase64.push(await readFileAsBase64(subImage1File));
+                    }
+                    if (subImage2File) {
+                        subImagesBase64.push(await readFileAsBase64(subImage2File));
+                    }
+                    if (subImage3File) {
+                        subImagesBase64.push(await readFileAsBase64(subImage3File));
+                    }
+                } catch (error) {
+                    showCustomModal('Error', 'Failed to read image files. Please try again.', false);
+                    console.error('Error reading image files:', error);
                     return;
                 }
 
-                propertiesToDisplay.forEach(property => {
-                    console.log(`Rendering property: ${property.title}`); // Added log for each property
-                    const box = document.createElement('div');
-                    box.className = 'box';
-                    box.dataset.id = property.id; // Store ID for modal lookup
+                const newProperty = {
+                    id: allProperties.length > 0 ? Math.max(...allProperties.map(p => p.id)) + 1 : 1, // Simple ID generation
+                    image: mainImageBase64,
+                    subImages: subImagesBase64,
+                    title: formData.get('title'),
+                    price: { amount: parseFloat(formData.get('price')), currency: '$' },
+                    location: formData.get('location'),
+                    details: {
+                        bedrooms: parseInt(formData.get('bedrooms')),
+                        bathrooms: parseInt(formData.get('bathrooms')),
+                        kitchen: parseInt(formData.get('kitchen')),
+                        area: formData.get('area')
+                    },
+                    description: formData.get('description'),
+                    likes: 0,
+                    shares: 0
+                };
 
-                    box.innerHTML = `
-                        <div class="box-img">
-                            <img src="${property.mainImage}" alt="${property.title}">
-                        </div>
-                        <div class="box-content">
-                            <div class="box-text">
-                                <h3>${property.title}</h3>
-                                <h3 class="price">${property.location.includes('Nigeria') ? '₦' : property.location.includes('London') || property.location.includes('Manchester') || property.location.includes('Oxford') ? '£' : '$'}${property.price.toLocaleString()}</h3>
-                            </div>
-                            <div class="rooms">
-                                <div class="room">
-                                    <img src="https://i.postimg.cc/fLGc1jJX/bed.png" alt="icon">
-                                    <p>${property.bedrooms} Bedrooms</p>
-                                </div>
-                                <div class="room">
-                                    <img src="https://i.postimg.cc/Bvt26wFH/bath.png" alt="icon">
-                                    <p>${property.bathrooms} Bathrooms</p>
-                                </div>
-                                <div class="room">
-                                    <img src="https://i.postimg.cc/Wp0ghZdW/kitchen.png" alt="icon">
-                                    <p>${property.kitchens} Kitchen</p>
-                                </div>
-                                <div class="room">
-                                    <img src="https://i.postimg.cc/MGcjxfkY/area.png" alt="icon">
-                                    <p>${property.area} Sq. Fit</p>
-                                </div>
-                            </div>
-                            <div class="box-btn">
-                                <div class="view">
-                                    <button class="btn view-details-btn" data-id="${property.id}">View Details</button>
-                                </div>
-                                <div class="share">
-                                    <div class="share-box">
-                                        <img src="https://i.postimg.cc/CL1hWTpG/like.png" alt="icon">
-                                    </div>
-                                    <div class="share-box">
-                                        <img src="https://i.postimg.cc/vBhyNXP2/share.png" alt="icon">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    trendingPropertiesGrid.appendChild(box);
+                allProperties.push(newProperty);
+                localStorage.setItem('properties', JSON.stringify(allProperties));
+                showCustomModal('Success!', 'New property has been added successfully!', false, () => {
+                    postPropertyForm.reset(); // Clear the form
+                    // Hide all image previews after successful submission
+                    document.getElementById('property-image-preview').style.display = 'none';
+                    document.getElementById('property-subimage1-preview').style.display = 'none';
+                    document.getElementById('property-subimage2-preview').style.display = 'none';
+                    document.getElementById('property-subimage3-preview').style.display = 'none';
+                    showScreen('admin-panel-screen'); // Go back to admin panel
                 });
+                renderProperties('property-grid', allProperties); // Update home screen
+                renderProperties('browse-property-grid', allProperties); // Update browse screen
+            });
+        }
+
+        // Render Manage Listings Screen
+        function renderManageListings() {
+            const listingsGrid = document.getElementById('listings-grid');
+            const noListingsMessage = document.getElementById('no-listings-message');
+            listingsGrid.innerHTML = ''; // Clear existing listings
+
+            if (allProperties.length === 0) {
+                noListingsMessage.style.display = 'block';
+                listingsGrid.style.display = 'none';
+                return;
+            } else {
+                noListingsMessage.style.display = 'none';
+                listingsGrid.style.display = 'grid';
             }
 
-            // --- Modal Logic ---
-            function openPropertyDetailModal(propertyId) {
-                const properties = getProperties();
-                const property = properties.find(p => p.id === propertyId);
+            allProperties.forEach(property => {
+                const listingCard = document.createElement('div');
+                listingCard.className = 'bg-white rounded-xl shadow-md p-4 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4 border border-gray-200';
+                listingCard.innerHTML = `
+                    <img src="${property.image}" alt="${property.title}" class="w-24 h-24 object-cover rounded-lg flex-shrink-0">
+                    <div class="flex-grow text-center sm:text-left">
+                        <h4 class="text-lg font-bold text-gray-900">${property.title}</h4>
+                        <p class="text-blue-600 font-semibold">${property.price.currency}${property.price.amount.toLocaleString()}</p>
+                        <p class="text-gray-500 text-sm">${property.location}</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                        <button class="bg-yellow-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-yellow-600 transition-colors duration-200 edit-listing-btn shadow-sm" data-id="${property.id}">
+                            <i class="fas fa-edit mr-1"></i> Edit
+                        </button>
+                        <button class="bg-red-500 text-white px-4 py-2 rounded-lg text-sm hover:bg-red-600 transition-colors duration-200 delete-listing-btn shadow-sm" data-id="${property.id}">
+                            <i class="fas fa-trash-alt mr-1"></i> Delete
+                        </button>
+                    </div>
+                `;
+                listingsGrid.appendChild(listingCard);
+            });
 
-                if (property) {
-                    modalPropertyTitle.textContent = property.title;
-                    modalMainImage.src = property.mainImage;
-                    modalPropertyPrice.textContent = `${property.location.includes('Nigeria') ? '₦' : property.location.includes('London') || property.location.includes('Manchester') || property.location.includes('Oxford') ? '£' : '$'}${property.price.toLocaleString()}`;
-                    modalPropertyBedrooms.textContent = property.bedrooms;
-                    modalPropertyBathrooms.textContent = property.bathrooms;
-                    modalPropertyKitchens.textContent = property.kitchens;
-                    modalPropertyArea.textContent = property.area;
-                    modalPropertyLikes.textContent = property.likes;
-                    modalPropertyShares.textContent = property.shares;
-                    modalPropertyDescription.textContent = property.description;
+            // Add event listeners for edit and delete buttons on newly rendered listings
+            listingsGrid.querySelectorAll('.edit-listing-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const propertyId = parseInt(e.currentTarget.dataset.id);
+                    // For now, navigate to a placeholder edit screen.
+                    // In a real app, you'd load the property data into a form.
+                    showScreen('edit-product-screen', e.currentTarget);
+                    console.log(`Edit property with ID: ${propertyId}`);
+                });
+            });
 
-                    // Set the data-property-id on the contact button
-                    modalContactBtn.dataset.propertyId = property.id;
-
-                    // Render sub-images
-                    modalSubImagesContainer.innerHTML = '';
-                    property.subImages.forEach(subImgUrl => {
-                        const img = document.createElement('img');
-                        img.src = subImgUrl;
-                        img.alt = 'Property sub-image';
-                        img.addEventListener('click', () => {
-                            modalMainImage.src = subImgUrl; // Change main image on sub-image click
-                            // Remove active class from all, add to clicked
-                            modalSubImagesContainer.querySelectorAll('img').forEach(i => i.classList.remove('active'));
-                            img.classList.add('active');
-                        });
-                        modalSubImagesContainer.appendChild(img);
+            listingsGrid.querySelectorAll('.delete-listing-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const propertyId = parseInt(e.currentTarget.dataset.id);
+                    showCustomModal('Confirm Deletion', 'Are you sure you want to delete this property? This action cannot be undone.', true, (confirmed) => {
+                        if (confirmed) {
+                            deleteProperty(propertyId);
+                        }
                     });
-                    // Set the first sub-image as active by default
-                    if (modalSubImagesContainer.firstElementChild) {
-                        modalSubImagesContainer.firstElementChild.classList.add('active');
-                    }
+                });
+            });
+        }
 
-                    propertyDetailModal.classList.add('show');
-                }
+        // Delete Property Function
+        function deleteProperty(id) {
+            const initialLength = allProperties.length;
+            allProperties = allProperties.filter(p => p.id !== id);
+            if (allProperties.length < initialLength) {
+                localStorage.setItem('properties', JSON.stringify(allProperties));
+                showCustomModal('Deleted!', 'Property successfully deleted.', false);
+                renderManageListings(); // Re-render the listings after deletion
+                renderProperties('property-grid', allProperties); // Update home screen
+                renderProperties('browse-property-grid', allProperties); // Update browse screen
+            } else {
+                showCustomModal('Error', 'Property not found.', false);
             }
+        }
 
-            function closePropertyDetailModal() {
-                propertyDetailModal.classList.remove('show');
-            }
 
-            // --- Event Listeners ---
-
-            // Mobile menu toggle
-            mobileMenuToggle.addEventListener('click', () => {
-                mainNavBar.classList.toggle('active');
-                mainLoginButtons.classList.toggle('active');
-                // Adjust position of login buttons if navBar is active
-                if (mainNavBar.classList.contains('active')) {
-                    mainLoginButtons.style.top = `${mainNavBar.offsetHeight + 100}px`; // 100px is header height
-                } else {
-                    mainLoginButtons.style.top = ''; // Reset
-                }
-            });
-
-            // Close menu when a nav link is clicked (for mobile)
-            mainNavBar.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    if (window.innerWidth < 1160) { // Based on your media query breakpoint
-                        mainNavBar.classList.remove('active');
-                        mainLoginButtons.classList.remove('active');
-                        mainLoginButtons.style.top = ''; // Reset
-                    }
-                });
-            });
-
-            // Adjust login button position on window resize if menu is open
-            window.addEventListener('resize', () => {
-                if (mainNavBar.classList.contains('active')) {
-                    mainLoginButtons.style.top = `${mainNavBar.offsetHeight + 100}px`;
-                }
-                // If resized to desktop, ensure menu is hidden
-                if (window.innerWidth >= 1160) {
-                    mainNavBar.classList.remove('active');
-                    mainLoginButtons.classList.remove('active');
-                    mainLoginButtons.style.top = '';
-                }
-            });
-
-            // Header Buttons
-            loginBtn.addEventListener('click', () => alert('Login button clicked! (Redirect to login page)'));
-            createAccountBtn.addEventListener('click', () => alert('Create Account button clicked! (Redirect to registration page)'));
-
-            // Explore More Button
-            exploreMoreBtn.addEventListener('click', () => alert('Explore More button clicked! (Redirect to About Us or Services page)'));
-
-            // Delegated event listener for "View Details" buttons (since they are dynamic)
-            trendingPropertiesGrid.addEventListener('click', (e) => {
-                if (e.target.classList.contains('view-details-btn')) {
-                    const propertyId = e.target.dataset.id;
-                    openPropertyDetailModal(propertyId);
-                }
-            });
-
-            // Social Media Icons (Footer) - already linked in HTML, but adding alerts for demonstration
-            document.querySelectorAll('.footer .social .icon a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // e.preventDefault(); // Prevent default if you want to handle navigation purely with JS
-                    // alert(`Navigating to ${e.currentTarget.href}`);
-                    console.log(`Navigating to ${e.currentTarget.href}`);
-                });
-            });
-
-            // Footer Nav Links - already linked in HTML, but adding alerts for demonstration
-            document.querySelectorAll('.footer .about p a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // e.preventDefault();
-                    // alert(`Navigating to ${e.currentTarget.textContent} page`);
-                    console.log(`Navigating to ${e.currentTarget.textContent} page`);
-                });
-            });
-
-            // App Store / Play Store Links - already linked in HTML, but adding alerts for demonstration
-            document.querySelectorAll('.footer .store a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    // e.preventDefault();
-                    // alert(`Opening ${e.currentTarget.alt} link`);
-                    console.log(`Opening ${e.currentTarget.alt} link`);
-                });
-            });
-
-            // Owner Subscribe Form
-            ownerSubscribeForm.addEventListener('submit', (e) => {
-                e.preventDefault(); // Prevent default form submission
-                const email = ownerEmailInput.value;
-                if (email) {
-                    alert(`Thank you for subscribing, ${email}! You will be listed as a property owner.`);
-                    ownerEmailInput.value = ''; // Clear input
-                } else {
-                    alert('Please enter a valid email address.');
-                }
-            });
-
-            // Modal Close Button
-            modalCloseBtn.addEventListener('click', closePropertyDetailModal);
-            propertyDetailModal.addEventListener('click', (e) => {
-                if (e.target === propertyDetailModal) { // Close only if clicking on the overlay, not content
-                    closePropertyDetailModal();
-                }
-            });
-
-            // Contact Agent Button in Modal - Updated to WhatsApp link with property details
-            modalContactBtn.addEventListener('click', () => {
-                const propertyId = modalContactBtn.dataset.propertyId;
-                const properties = getProperties();
-                const property = properties.find(p => p.id === propertyId);
-
-                if (property) {
-                    const phoneNumber = '22950019755'; // Agent's phone number
-                    const formattedPrice = `${property.location.includes('Nigeria') ? '₦' : property.location.includes('London') || property.location.includes('Manchester') || property.location.includes('Oxford') ? '£' : '$'}${property.price.toLocaleString()}`;
-                    
-                    const message = `Hello, I am interested in the property "${property.title}" located at "${property.location}" for ${formattedPrice}. Could you please provide more details? Thank you!`;
-                    const encodedMessage = encodeURIComponent(message);
-                    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-                    window.open(whatsappUrl, '_blank');
-                } else {
-                    alert('Could not retrieve property details for WhatsApp message.');
-                }
-            });
-
-            // Initial render of all properties (no filter argument needed now)
-            renderTrendingProperties();
+        // Set initial active link for the home screen (after splash)
+        document.addEventListener('DOMContentLoaded', () => {
+            // The initial showScreen('home-screen') is handled by window.onload after the splash screen fades.
+            // This ensures that renderProperties for the home screen is called.
         });
     </script>
 </body>
